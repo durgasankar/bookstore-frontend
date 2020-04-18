@@ -4,6 +4,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgxSpinnerModule } from "ngx-spinner";
 import {
   MatButtonModule,
   MatInputModule,
@@ -41,6 +42,8 @@ import { RegistrationComponent } from "./containers/user-authentication/registra
 import { AuthenticationService } from "./services/authentication.service";
 import { HttpService } from "./services/http.service";
 import { PageNotFoundComponent } from "./containers/page-not-found/page-not-found.component";
+import { LoginComponent } from "./containers/user-authentication/login/login.component";
+import { HttpClientModule } from "@angular/common/http";
 
 const MaterialModule = [
   MatCheckboxModule,
@@ -77,7 +80,12 @@ const MaterialModule = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, RegistrationComponent, PageNotFoundComponent],
+  declarations: [
+    AppComponent,
+    RegistrationComponent,
+    PageNotFoundComponent,
+    LoginComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -86,8 +94,10 @@ const MaterialModule = [
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    HttpClientModule,
+    NgxSpinnerModule,
   ],
-  providers: [HttpService, AuthenticationService],
+  providers: [HttpService, AuthenticationService, HttpService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

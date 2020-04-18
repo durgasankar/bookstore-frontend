@@ -5,54 +5,109 @@
                 <div class="mat-title">Registration Form</div>
             </mat-card-title>
         </mat-card-header>
-        <form [formGroup]="registrationForm">
+        <form [formGroup]="registrationForm" (ngSubmit)="registrationForm.valid && onSubmit()">
             <mat-card-content>
+                <ngx-spinner *ngIf="showSpinner" bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff"
+                    type="ball-scale-multiple">
+                    <p style="font-size: 20px; color: white">Loading...</p>
+                </ngx-spinner>
+                <div class="role">
+                    <mat-error *ngIf="registrationForm.get('role').hasError('required')">Please choose a role
+                    </mat-error>
+                    <mat-radio-group aria-labelledby="Select an option" formControlName="role">
+                        <mat-radio-button color="primary" value="user">User</mat-radio-button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-radio-button color="primary" value="admin">Admin</mat-radio-button>
+                    </mat-radio-group>
+                    <p></p>
+                </div>
                 <div class="name-container" fxLayout="row" fxLayoutAlign="space-between center">
                     <div class="first-name">
                         <mat-form-field appearance="outline">
                             <mat-label>Firstname</mat-label>
-                            <input matInput placeholder="Enter Firstname" />
+                            <input matInput placeholder="Enter Firstname" formControlName="firstName" />
+                            <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">First name
+                                required</mat-error>
+                            <mat-error *ngIf="registrationForm.get('firstName').hasError('pattern')">Numbers not
+                                allowed
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div class="last-name">
                         <mat-form-field appearance="outline">
                             <mat-label>Lastname</mat-label>
-                            <input matInput placeholder="Enter Lastname" />
+                            <input matInput placeholder="Enter Lastname" formControlName="lastName" />
+                            <mat-error *ngIf="registrationForm.get('lastName').hasError('required')">Last name
+                                required</mat-error>
+                            <mat-error *ngIf="registrationForm.get('lastName').hasError('pattern')">Numbers not
+                                allowed
+                            </mat-error>
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="email-id">
                     <mat-form-field appearance="outline" style="width: 100%;">
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="Enter Email" />
+                        <input matInput placeholder="Enter Email" formControlName="emailId" />
                         <mat-icon matSuffix>mail</mat-icon>
+                        <mat-error *ngIf="registrationForm.get('emailId').hasError('required')">Email required
+                        </mat-error>
+                        <mat-error *ngIf="registrationForm.get('emailId').hasError('email')">Enter valid email
+                            ex:abc@gmail.com
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="phone-number">
                     <mat-form-field appearance="outline" style="width: 100%;">
                         <mat-label>Phone number</mat-label>
-                        <input matInput placeholder="Enter Phone number" />
+                        <input matInput placeholder="Enter Phone number" formControlName="mobileNumber" />
                         <mat-icon matSuffix>phone</mat-icon>
+                        <mat-error *ngIf="registrationForm.get('mobileNumber').hasError('required')">Phone number is
+                            mandatory</mat-error>
+                        <mat-error *ngIf="registrationForm.get('mobileNumber').hasError('pattern')">Phone number
+                            must be
+                            10 digits</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="user-name">
                     <mat-form-field appearance="outline" style="width: 100%;">
                         <mat-label>Username</mat-label>
-                        <input matInput placeholder="Enter Username" />
+                        <input matInput placeholder="Enter Username" formControlName="userName" />
                         <mat-icon matSuffix>person</mat-icon>
+                        <mat-error *ngIf="registrationForm.get('userName').hasError('required')">Username is
+                            mandatory
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="password-container" fxLayout="row" fxLayoutAlign="space-between center">
                     <div class="password">
                         <mat-form-field appearance="outline">
                             <mat-label>Password</mat-label>
-                            <input matInput [type]="!hide ? 'password' : 'text'" />
+                            <input matInput [type]="!hide ? 'password' : 'text'" formControlName="password" />
+                            <mat-error>
+                                <mat-error
+                                    *ngIf="this.registrationForm.get('password').touched && this.registrationForm.get('password').hasError('required')">
+                                    please provide a strong password</mat-error>
+                                <mat-error *ngIf="registrationForm.controls['password'].hasError('minlength')">
+                                    password
+                                    should be greater than 3 character</mat-error>
+                                <mat-error *ngIf="registrationForm.controls['password'].hasError('maxlength')">
+                                    password
+                                    should not exceed 10 character</mat-error>
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div class="confirm-password">
                         <mat-form-field appearance="outline">
                             <mat-label>Confirm</mat-label>
-                            <input matInput [type]="!hide ? 'password' : 'text'" />
+                            <input matInput [type]="!hide ? 'password' : 'text'" formControlName="confirmPassword" />
+                            <mat-error *ngIf="userInfo.confirmPassword.touched && userInfo.confirmPassword.errors">
+                                <mat-error *ngIf="userInfo.confirmPassword.errors.required">Please Re-Enter password
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="!userInfo.confirmPassword.errors.required && userInfo.confirmPassword.errors">
+                                    Password Must be same</mat-error>
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div class="symbol-password">
@@ -61,17 +116,10 @@
                         </mat-icon>
                     </div>
                 </div>
-                <div class="roles" align=start>
-                    <mat-radio-group aria-labelledby="Select an option">
-                        <mat-radio-button color="primary" value="userRole" checked>User</mat-radio-button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <mat-radio-button color="primary" value="adminRole">Admin</mat-radio-button>
-                    </mat-radio-group>
-                </div>
             </mat-card-content>
             <mat-card-actions>
                 <div class="register" align=start>
-                    <button mat-raised-button color="primary" type="submit">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">
                         Register
                     </button>
                 </div>

@@ -22,7 +22,7 @@ export class AuthenticationService {
     return this._httpService.postMethod(
       this.registrationUrl,
       registrationDto,
-      this._httpService.httpOptions
+      ""
     );
   }
 }

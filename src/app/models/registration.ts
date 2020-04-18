@@ -4,5 +4,6 @@ export class Registration {
   public emailId: string;
   public mobileNumber: number;
   public userName: string;
-  public roles: Roles[];
+  public password: string;
+  public role: string;
 }
