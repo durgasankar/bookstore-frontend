@@ -1,0 +1,81 @@
+<div class="container" align=center>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title color="primary">
+                <div class="mat-title">Registration Form</div>
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="registrationForm">
+            <mat-card-content>
+                <div class="name-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="first-name">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Firstname</mat-label>
+                            <input matInput placeholder="Enter Firstname" />
+                        </mat-form-field>
+                    </div>
+                    <div class="last-name">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Lastname</mat-label>
+                            <input matInput placeholder="Enter Lastname" />
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="email-id">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Enter Email" />
+                        <mat-icon matSuffix>mail</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="phone-number">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Phone number</mat-label>
+                        <input matInput placeholder="Enter Phone number" />
+                        <mat-icon matSuffix>phone</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="user-name">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Enter Username" />
+                        <mat-icon matSuffix>person</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="password-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="password">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="!hide ? 'password' : 'text'" />
+                        </mat-form-field>
+                    </div>
+                    <div class="confirm-password">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Confirm</mat-label>
+                            <input matInput [type]="!hide ? 'password' : 'text'" />
+                        </mat-form-field>
+                    </div>
+                    <div class="symbol-password">
+                        <mat-icon matSuffix (click)="hide = !hide">
+                            {{ hide ? "visibility_off" : "visibility" }}
+                        </mat-icon>
+                    </div>
+                </div>
+                <div class="roles" align=start>
+                    <mat-radio-group aria-labelledby="Select an option">
+                        <mat-radio-button color="primary" value="userRole" checked>User</mat-radio-button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-radio-button color="primary" value="adminRole">Admin</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="register" align=start>
+                    <button mat-raised-button color="primary" type="submit">
+                        Register
+                    </button>
+                </div>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

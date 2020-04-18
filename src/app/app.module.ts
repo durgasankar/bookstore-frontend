@@ -37,6 +37,10 @@ import {
   MatPaginatorModule,
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RegistrationComponent } from "./containers/user-authentication/registration/registration.component";
+import { AuthenticationService } from "./services/authentication.service";
+import { HttpService } from "./services/http.service";
+import { PageNotFoundComponent } from "./containers/page-not-found/page-not-found.component";
 
 const MaterialModule = [
   MatCheckboxModule,
@@ -73,7 +77,7 @@ const MaterialModule = [
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, RegistrationComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -83,7 +87,7 @@ const MaterialModule = [
     ReactiveFormsModule,
     FlexLayoutModule,
   ],
-  providers: [],
+  providers: [HttpService, AuthenticationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
