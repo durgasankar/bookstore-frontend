@@ -1,3 +1,4 @@
+import { ActivateAccountComponent } from "./containers/user-authentication/activate-account/activate-account.component";
 import { RegistrationComponent } from "./containers/user-authentication/registration/registration.component";
 import { PageNotFoundComponent } from "./containers/page-not-found/page-not-found.component";
 import { NgModule } from "@angular/core";
@@ -8,6 +9,7 @@ const routes: Routes = [
   { path: "", redirectTo: "/signin", pathMatch: "full" },
   { path: "signup", component: RegistrationComponent },
   { path: "signin", component: LoginComponent },
+  { path: "verification/:token", component: ActivateAccountComponent },
   { path: "**", component: PageNotFoundComponent },
 ];
 

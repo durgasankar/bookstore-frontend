@@ -7,3 +7,13 @@ mat-card {
 .symbol-password {
   margin-bottom: 15px;
 }
+// mat card override style
+.mat-card-actions {
+  margin: 0px;
+  margin-bottom: 5px;
+  padding: 0px;
+}
+.login-link {
+  margin-right: 15px;
+  margin-top: 5px;
+}

@@ -117,11 +117,14 @@
                     </div>
                 </div>
             </mat-card-content>
-            <mat-card-actions>
-                <div class="register" align=start>
+            <mat-card-actions fxLayout="row" fxLayoutAlign="space-between stretch">
+                <div class="register">
                     <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">
                         Register
                     </button>
+                </div>
+                <div class="login-link">
+                    <a [routerLink]="['/signin']">Sign in instead</a>
                 </div>
             </mat-card-actions>
         </form>

@@ -44,6 +44,7 @@ import { HttpService } from "./services/http.service";
 import { PageNotFoundComponent } from "./containers/page-not-found/page-not-found.component";
 import { LoginComponent } from "./containers/user-authentication/login/login.component";
 import { HttpClientModule } from "@angular/common/http";
+import { ActivateAccountComponent } from './containers/user-authentication/activate-account/activate-account.component';
 
 const MaterialModule = [
   MatCheckboxModule,
@@ -85,6 +86,7 @@ const MaterialModule = [
     RegistrationComponent,
     PageNotFoundComponent,
     LoginComponent,
+    ActivateAccountComponent,
   ],
   imports: [
     BrowserModule,

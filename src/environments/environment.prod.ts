@@ -4,5 +4,6 @@ export const environment = {
 
   //  user api urls
   REGISTRATION_URL: "/signup",
+  ACTIVATE_ACCOUNT_URL: "/verification",
   LOGIN_URL: "/signin",
 };

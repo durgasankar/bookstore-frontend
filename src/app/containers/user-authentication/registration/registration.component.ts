@@ -85,7 +85,7 @@ export class RegistrationComponent implements OnInit {
           this._matSnackBar.open(response.message, "ok", {
             duration: 5000,
           });
-          this._router.navigateByUrl("/signin");
+          this._router.navigateByUrl(`${environment.LOGIN_URL}`);
           this.showSpinner = false;
         },
         (errors: any) => {
@@ -93,7 +93,7 @@ export class RegistrationComponent implements OnInit {
           this._matSnackBar.open(errors.error.message, "ok", {
             duration: 5000,
           });
-          this._router.navigateByUrl("/signup");
+          this._router.navigateByUrl(`${environment.REGISTRATION_URL}`);
           this.showSpinner = false;
         }
       );
