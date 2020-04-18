@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "src/app/services/authentication.service";
-import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";

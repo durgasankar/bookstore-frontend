@@ -3,6 +3,7 @@ import { HttpService } from "./http.service";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
+import { Login } from "../models/login";
 
 @Injectable({
   providedIn: "root",
@@ -16,6 +17,10 @@ export class AuthenticationService {
 
   private verificationUrl: string = `${
     environment.USER_API_URL + environment.ACTIVATE_ACCOUNT_URL
+  }`;
+
+  private loginUrl: string = `${
+    environment.USER_API_URL + environment.LOGIN_URL
   }`;
 
   public registration(registrationDto: Registration) {
@@ -33,5 +38,10 @@ export class AuthenticationService {
       "",
       ""
     );
+  }
+
+  public login(loginDto: Login) {
+    console.log("fetching loginUrl : ", this.loginUrl);
+    return this._httpService.postMethod(this.loginUrl, loginDto, "");
   }
 }

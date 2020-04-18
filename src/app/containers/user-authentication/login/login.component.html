@@ -1,1 +1,57 @@
-<p>login works!</p>
+<div class="login-container" align=center>
+    <mat-card>
+        <mat-card-title>
+            <span class="mat-title">
+                Sign in!
+            </span>
+            <div class="mat-subheading-1">
+                to continue book store app
+            </div>
+        </mat-card-title>
+        <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onSubmit()">
+            <mat-card-content>
+                <ngx-spinner *ngIf="showSpinner" bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff"
+                    type="ball-scale-multiple">
+                    <p style="font-size: 20px; color: white">Loading...</p>
+                </ngx-spinner>
+                <div class="user-name">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Enter Username" formControlName="userName" />
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error *ngIf="loginForm.get('userName').hasError('required')">Username field can't be empty
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="password">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="!hide ? 'password' : 'text'" formControlName="password" />
+                        <mat-icon matSuffix (click)="hide = !hide">
+                            {{ hide ? "visibility" : "visibility_off" }}
+                        </mat-icon>
+                        <mat-error>
+                            <mat-error
+                                *ngIf="this.loginForm.get('password').touched && this.loginForm.get('password').hasError('required')">
+                                Password field can't be empty</mat-error>
+                            <mat-error *ngIf="loginForm.controls['password'].hasError('minlength')">
+                                Password should be greater than 3 character</mat-error>
+                            <mat-error *ngIf="loginForm.controls['password'].hasError('maxlength')">
+                                Password should not exceed 10 character</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions fxLayout="row" fxLayoutAlign="space-between stretch">
+                <div class="register">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
+                        Login
+                    </button>
+                </div>
+                <div class="login-link">
+                    <a [routerLink]="['/signup']">New User ?</a>
+                </div>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

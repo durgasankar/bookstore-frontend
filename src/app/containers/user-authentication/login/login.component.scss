@@ -1,0 +1,13 @@
+mat-card {
+  width: 300px;
+  background: rgba(128, 128, 128, 0.05);
+}
+.login-container {
+  padding-top: 5em;
+}
+// mat card override style
+.mat-card-actions {
+  margin: 0px;
+  padding-bottom: 5px;
+  padding: 0px;
+}
