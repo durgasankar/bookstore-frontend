@@ -47,6 +47,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ActivateAccountComponent } from './containers/user-authentication/activate-account/activate-account.component';
 import { UserDashboardComponent } from './containers/dashboard/user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './containers/dashboard/admin-dashboard/admin-dashboard.component';
+import { TopNavBarComponent } from './containers/dashboard/top-nav-bar/top-nav-bar.component';
 
 const MaterialModule = [
   MatCheckboxModule,
@@ -91,6 +92,7 @@ const MaterialModule = [
     ActivateAccountComponent,
     UserDashboardComponent,
     AdminDashboardComponent,
+    TopNavBarComponent,
   ],
   imports: [
     BrowserModule,

@@ -52,7 +52,11 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         console.log("response message : ", response);
         this._matSnackBar.open(
-          "Mr/s. " + response.firstName + ", " + response.message,
+          "Welcome Mr/s. " +
+            response.loginInfo.firstName +
+            ", to " +
+            response.loginInfo.role +
+            " page.",
           "cancel",
           { duration: 5000 }
         );
@@ -89,9 +93,13 @@ export class LoginComponent implements OnInit {
           this._router.navigateByUrl(`${environment.REGISTRATION_URL}`);
         } else {
           console.log("un authenticated : ", errors.error);
-          this._matSnackBar.open("Opps...Internal Server Error!", "ok", {
-            duration: 5000,
-          });
+          this._matSnackBar.open(
+            "Oops...Login failed!.Internal Server Error!",
+            "ok",
+            {
+              duration: 5000,
+            }
+          );
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);
         }
         this.showSpinner = false;

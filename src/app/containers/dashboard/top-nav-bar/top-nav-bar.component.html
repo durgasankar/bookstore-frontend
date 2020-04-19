@@ -1,0 +1,61 @@
+<div class="top-nav-container" fxLayout="column" xLayoutAlign="space-between center" fxFlex="100">
+    <mat-toolbar style="background-color: rgba(237, 179, 43, 1);">
+        <div class="logo-name" fxFlex="15" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
+            <div class="image">
+                <img src=".\assets\edited-open-book.png" alt="open book" width="70" height="52">
+            </div>
+            <div class="mat-title" fxHide.xs="true" fxLayoutGap="5%">{{ bookStoreName }}</div>
+        </div>
+        <div class="search" fxFlex="60" fxLayout="row" fxLayout-align="center center" fxFlex.xs="70">
+            <button mat-icon-button fxHide.xs="true">
+                <mat-icon>search</mat-icon>
+            </button>
+            <input matTooltip="Search" placeholder="Search" class="input" />
+        </div>
+        <div class="icons" fxFlex="20" fxLayout="row" fxLayoutAlign="space-between center">
+            <!-- refresh -->
+            <div id="refresh" fxLayout="row">
+                <button mat-icon-button matTooltip="Refresh">
+                    <mat-icon>refresh</mat-icon>
+                </button>
+            </div>
+            <!-- Shooping cart -->
+            <div id="cart" fxLayout="row">
+                <button mat-icon-button matTooltip="Cart">
+                    <mat-icon class="mat-icon-cart">add_shopping_cart</mat-icon>
+                </button>
+            </div>
+            <!-- Profile -->
+            <!-- on click it will open menu -->
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <img mat-card-avatar src="{{ profilePicUser }}" class="profile1" />
+                </button>
+                <!-- menu for sign out -->
+                <mat-menu #menu="matMenu">
+                    <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
+                        <mat-card style="overflow: hidden">
+                            <mat-card-content>
+                                <div>
+                                    <img class="topic-avatar" mat-card-avatar src="{{ profilePicUser }}" />
+                                    <label class="btn-upload">
+                                        <input type="file" name="fileupload" />
+                                        <button class="btn">Change</button>
+                                    </label>
+                                </div>
+                                <div class="firstName" style="margin-top: 15px;text-align: center;">
+                                    {{ firstName }}
+                                </div>
+                            </mat-card-content>
+                            <mat-card-actions align="center">
+                                <button mat-raised-button (click)="signOut()">
+                                    Sign out
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </mat-menu>
+            </div>
+        </div>
+    </mat-toolbar>
+</div>
