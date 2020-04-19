@@ -15,16 +15,27 @@
         <div class="icons" fxFlex="20" fxLayout="row" fxLayoutAlign="space-between center">
             <!-- refresh -->
             <div id="refresh" fxLayout="row">
-                <button mat-icon-button matTooltip="Refresh">
+                <button mat-icon-button matTooltip="Refresh" (click)="refreshButton()">
                     <mat-icon>refresh</mat-icon>
                 </button>
             </div>
             <!-- Shooping cart -->
-            <div id="cart" fxLayout="row">
+            <!-- <div id="cart" fxLayout="row">
                 <button mat-icon-button matTooltip="Cart">
                     <mat-icon class="mat-icon-cart">add_shopping_cart</mat-icon>
                 </button>
-            </div>
+            </div> -->
+            <ng-template id="cart" fxLayout="row" *ngIf="!isAdmin; else admin">
+                <button mat-icon-button matTooltip="Cart">
+                    <mat-icon class="mat-icon-cart">add_shopping_cart</mat-icon>
+                </button>
+            </ng-template>
+            <!-- if admin user -->
+            <ng-template #admin fxLayout="row">
+                <button mat-icon-button matTooltip="Add book">
+                    <mat-icon class="mat-icon-cart">library_add</mat-icon>
+                </button>
+            </ng-template>
             <!-- Profile -->
             <!-- on click it will open menu -->
             <div>
@@ -43,14 +54,11 @@
                                         <button class="btn">Change</button>
                                     </label>
                                 </div>
-                                <div class="firstName" style="margin-top: 15px;text-align: center;">
-                                    {{ firstName }}
+                                <div class="firstName" style="margin-top: 15px;text-align: center;"> {{ firstName }}
                                 </div>
                             </mat-card-content>
                             <mat-card-actions align="center">
-                                <button mat-raised-button (click)="signOut()">
-                                    Sign out
-                                </button>
+                                <button mat-raised-button (click)="signOut()">Sign out</button>
                             </mat-card-actions>
                         </mat-card>
                     </div>

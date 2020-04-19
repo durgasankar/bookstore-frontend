@@ -9,6 +9,9 @@ import { Login } from "../models/login";
   providedIn: "root",
 })
 export class AuthenticationService {
+  private role: string;
+  private firstName: string;
+
   constructor(private _httpService: HttpService) {}
 
   private registrationUrl: string = `${
@@ -22,6 +25,22 @@ export class AuthenticationService {
   private loginUrl: string = `${
     environment.USER_API_URL + environment.LOGIN_URL
   }`;
+
+  public setRole(role: string): void {
+    this.role = role;
+  }
+
+  public getRole(): string {
+    return this.role;
+  }
+
+  public setFirstName(firstName: string): void {
+    this.firstName = firstName;
+  }
+
+  public getFirstName(): string {
+    return this.firstName;
+  }
 
   public registration(registrationDto: Registration) {
     console.log("registration service reached : ", this.registrationUrl);

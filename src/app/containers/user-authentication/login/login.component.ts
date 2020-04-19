@@ -57,32 +57,37 @@ export class LoginComponent implements OnInit {
             ", to " +
             response.loginInfo.role +
             " page.",
-          "cancel",
-          { duration: 5000 }
+          "ok",
+          { duration: 3000 }
         );
+        // valid user
         if (response.statusCode === 200) {
           localStorage.setItem("token", response.loginInfo.token);
           localStorage.setItem("firstName", response.loginInfo.firstName);
           localStorage.setItem("role", response.loginInfo.role);
           this.assignedRole = response.loginInfo.role;
-          if (this.assignedRole.match("admin")) {
-            this._router.navigateByUrl("dashboard/admin");
-          } else {
+          // user
+          if (this.assignedRole.match("user")) {
             this._router.navigateByUrl("dashboard/user");
+            // admin
+          } else {
+            this._router.navigateByUrl("dashboard/admin");
           }
         } else {
+          // un-identified role
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);
         }
-        this.showSpinner = false;
       },
       (errors: any) => {
         console.log("error : ", errors);
+        // bad credentials
         if (errors.error.statusCode === 422) {
           console.log("bad credentials : ", errors.error);
           this._matSnackBar.open(errors.error.message, "cancel", {
             duration: 5000,
           });
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);
+          // user not found
         } else if (errors.error.statusCode === 404) {
           console.log("not found user : ", errors.error.message);
           this._matSnackBar.open(
@@ -91,6 +96,7 @@ export class LoginComponent implements OnInit {
             { duration: 5000 }
           );
           this._router.navigateByUrl(`${environment.REGISTRATION_URL}`);
+          // any other exceptions if occured
         } else {
           console.log("un authenticated : ", errors.error);
           this._matSnackBar.open(
@@ -102,6 +108,8 @@ export class LoginComponent implements OnInit {
           );
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);
         }
+      },
+      () => {
         this.showSpinner = false;
       }
     );
