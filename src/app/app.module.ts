@@ -44,10 +44,11 @@ import { HttpService } from "./services/http.service";
 import { PageNotFoundComponent } from "./containers/page-not-found/page-not-found.component";
 import { LoginComponent } from "./containers/user-authentication/login/login.component";
 import { HttpClientModule } from "@angular/common/http";
-import { ActivateAccountComponent } from './containers/user-authentication/activate-account/activate-account.component';
-import { UserDashboardComponent } from './containers/dashboard/user-dashboard/user-dashboard.component';
-import { AdminDashboardComponent } from './containers/dashboard/admin-dashboard/admin-dashboard.component';
-import { TopNavBarComponent } from './containers/dashboard/top-nav-bar/top-nav-bar.component';
+import { ActivateAccountComponent } from "./containers/user-authentication/activate-account/activate-account.component";
+import { UserDashboardComponent } from "./containers/dashboard/user-dashboard/user-dashboard.component";
+import { AdminDashboardComponent } from "./containers/dashboard/admin-dashboard/admin-dashboard.component";
+import { TopNavBarComponent } from "./containers/dashboard/top-nav-bar/top-nav-bar.component";
+import { AddBookComponent } from "./containers/dashboard/admin-dashboard/add-book/add-book.component";
 
 const MaterialModule = [
   MatCheckboxModule,
@@ -93,6 +94,7 @@ const MaterialModule = [
     UserDashboardComponent,
     AdminDashboardComponent,
     TopNavBarComponent,
+    AddBookComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +108,7 @@ const MaterialModule = [
     NgxSpinnerModule,
   ],
   providers: [HttpService, AuthenticationService, HttpService],
+  entryComponents: [AddBookComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

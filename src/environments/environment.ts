@@ -5,11 +5,13 @@
 export const environment = {
   production: false,
   USER_API_URL: "http://localhost:8081/users",
+  ADMIN_API_URL: "http://localhost:8081/admin",
 
   //  user api urls
   REGISTRATION_URL: "/signup",
   ACTIVATE_ACCOUNT_URL: "/verification",
   LOGIN_URL: "/signin",
+  ADD_BOOK: "/add",
 };
 
 /*

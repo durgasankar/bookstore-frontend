@@ -1,2 +1,9 @@
-<app-top-nav-bar></app-top-nav-bar>
+<app-top-nav-bar [isAdmin]="isAdmin" [firstName]="firstName"></app-top-nav-bar>
+
+<!-- Shooping cart -->
+<div id="cart" fxLayout="row">
+    <button mat-icon-button matTooltip="Cart" (click)="openAddBookDialog()">
+        <mat-icon class="mat-icon-cart">add</mat-icon>
+    </button>
+</div>
 books info admin

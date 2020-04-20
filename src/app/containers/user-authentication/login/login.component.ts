@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("firstName", response.loginInfo.firstName);
           localStorage.setItem("role", response.loginInfo.role);
           this.assignedRole = response.loginInfo.role;
+          this._authenticationService.setRole(response.loginInfo.role);
           // user
           if (this.assignedRole.match("user")) {
             this._router.navigateByUrl("dashboard/user");
@@ -81,14 +82,14 @@ export class LoginComponent implements OnInit {
       (errors: any) => {
         console.log("error : ", errors);
         // bad credentials
-        if (errors.error.statusCode === 422) {
+        if (errors.error.httpStatus.match("NON_AUTHORITATIVE_INFORMATION")) {
           console.log("bad credentials : ", errors.error);
           this._matSnackBar.open(errors.error.message, "cancel", {
             duration: 5000,
           });
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);
           // user not found
-        } else if (errors.error.statusCode === 404) {
+        } else if (errors.error.httpStatus.match("NOT_FOUND")) {
           console.log("not found user : ", errors.error.message);
           this._matSnackBar.open(
             errors.error.message + ", Please register.",
@@ -108,6 +109,7 @@ export class LoginComponent implements OnInit {
           );
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);
         }
+        this.showSpinner = false;
       },
       () => {
         this.showSpinner = false;

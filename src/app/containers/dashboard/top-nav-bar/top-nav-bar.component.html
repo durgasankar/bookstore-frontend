@@ -25,17 +25,11 @@
                     <mat-icon class="mat-icon-cart">add_shopping_cart</mat-icon>
                 </button>
             </div> -->
-            <ng-template id="cart" fxLayout="row" *ngIf="!isAdmin; else admin">
+            <div>
                 <button mat-icon-button matTooltip="Cart">
                     <mat-icon class="mat-icon-cart">add_shopping_cart</mat-icon>
                 </button>
-            </ng-template>
-            <!-- if admin user -->
-            <ng-template #admin fxLayout="row">
-                <button mat-icon-button matTooltip="Add book">
-                    <mat-icon class="mat-icon-cart">library_add</mat-icon>
-                </button>
-            </ng-template>
+            </div>
             <!-- Profile -->
             <!-- on click it will open menu -->
             <div>

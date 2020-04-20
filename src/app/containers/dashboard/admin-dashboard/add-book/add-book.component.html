@@ -1,0 +1,58 @@
+<div class="add-book-container">
+    <mat-card>
+        <mat-card-title>
+            Add a book
+        </mat-card-title>
+        <form [formGroup]="addBookForm"
+            (ngSubmit)="addBookForm.valid && addBookForm.get('image').value !== '' && onSubmit()">
+            <mat-card-content>
+                <div class="book-info" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
+                    <div class="title">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Title</mat-label>
+                            <input matInput placeholder="Enter book title" formControlName="title">
+                        </mat-form-field>
+                    </div>
+                    <div class="author">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Author</mat-label>
+                            <input matInput placeholder="Enter author name" formControlName="author">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="numeric-info" fxLayoutAlign="space-between center" fxLayoutGap="2%">
+                    <div class="price">
+                        <mat-form-field appearance="legacy" style="width: 85%;">
+                            <mat-label>Price</mat-label>
+                            <input matInput type="number" formControlName="price">
+                            <span matPrefix>₹&nbsp;&nbsp;</span>
+                            <span matSuffix>.00</span>
+                        </mat-form-field>
+                    </div>
+                    <div class="quantity">
+                        <mat-form-field appearance="legacy" style="width: 95%;">
+                            <mat-label>Quntity</mat-label>
+                            <input matInput type="number" formControlName="quantity">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="image">
+                    <!-- display the uploaded file -->
+                    <img [src]="imageFile ? imageFile.link : 'sss/ssa'">
+                    <!-- upload a file through input -->
+                    <button mat-icon-button matTooltip="Cart" onclick="document.querySelector('#inputFile').click()">
+                        <mat-icon class="mat-icon-cart">attach_file</mat-icon>
+                    </button>
+                    <input type="file" id="inputFile" (change)="imagesPreview($event)" style="display: none;">
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="submit">
+                    <button mat-raised-button color="primary" type="submit">
+                        Add New Book
+                    </button>
+                </div>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>
