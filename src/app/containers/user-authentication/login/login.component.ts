@@ -88,6 +88,7 @@ export class LoginComponent implements OnInit {
             duration: 5000,
           });
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);
+          localStorage.clear();
           // user not found
         } else if (errors.error.httpStatus.match("NOT_FOUND")) {
           console.log("not found user : ", errors.error.message);

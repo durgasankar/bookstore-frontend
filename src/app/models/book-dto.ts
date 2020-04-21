@@ -3,5 +3,6 @@ export class BookDto {
   public author: string;
   public price: number;
   public availableQuantity: number;
-  public file: File;
+  // public imageFile: any;
+  public imageUrl: any;
 }

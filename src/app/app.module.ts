@@ -49,6 +49,7 @@ import { UserDashboardComponent } from "./containers/dashboard/user-dashboard/us
 import { AdminDashboardComponent } from "./containers/dashboard/admin-dashboard/admin-dashboard.component";
 import { TopNavBarComponent } from "./containers/dashboard/top-nav-bar/top-nav-bar.component";
 import { AddBookComponent } from "./containers/dashboard/admin-dashboard/add-book/add-book.component";
+import { AdminBookOperationService } from "./services/admin-book-operation.service";
 
 const MaterialModule = [
   MatCheckboxModule,
@@ -107,7 +108,7 @@ const MaterialModule = [
     HttpClientModule,
     NgxSpinnerModule,
   ],
-  providers: [HttpService, AuthenticationService, HttpService],
+  providers: [HttpService, AuthenticationService, AdminBookOperationService],
   entryComponents: [AddBookComponent],
   bootstrap: [AppComponent],
 })

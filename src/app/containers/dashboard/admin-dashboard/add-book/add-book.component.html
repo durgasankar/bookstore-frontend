@@ -1,10 +1,14 @@
 <div class="add-book-container">
     <mat-card>
+        <ngx-spinner *ngIf="showSpinner" bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff"
+            type="ball-scale-multiple">
+            <p style="font-size: 20px; color: white">Loading...</p>
+        </ngx-spinner>
         <mat-card-title>
             Add a book
         </mat-card-title>
         <form [formGroup]="addBookForm"
-            (ngSubmit)="addBookForm.valid && addBookForm.get('image').value !== '' && onSubmit()">
+            (ngSubmit)="addBookForm.valid && addBookForm.get('imageUrl').value !== '' && onSubmit()">
             <mat-card-content>
                 <div class="book-info" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
                     <div class="title">
@@ -32,18 +36,32 @@
                     <div class="quantity">
                         <mat-form-field appearance="legacy" style="width: 95%;">
                             <mat-label>Quntity</mat-label>
-                            <input matInput type="number" formControlName="quantity">
+                            <input matInput type="number" formControlName="availableQuantity">
                         </mat-form-field>
                     </div>
                 </div>
-                <div class="image">
-                    <!-- display the uploaded file -->
-                    <img [src]="imageFile ? imageFile.link : 'sss/ssa'">
-                    <!-- upload a file through input -->
+                <!-- <div class="image">      
+                    <img [src]="imageFile ? imageFile.link : 'sss/ssa'">                
                     <button mat-icon-button matTooltip="Cart" onclick="document.querySelector('#inputFile').click()">
                         <mat-icon class="mat-icon-cart">attach_file</mat-icon>
                     </button>
                     <input type="file" id="inputFile" (change)="imagesPreview($event)" style="display: none;">
+                </div> -->
+                <div class="image" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="input-link">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Image url</mat-label>
+                            <input matInput formControlName="imageUrl" [(ngModel)]="myUrl">
+                        </mat-form-field>
+                    </div>
+                    <div class="display-image">
+                        <ng-container class="image" *ngIf="myUrl != null && myUrl != ''; else nonImg">
+                            <img [src]="myUrl" alt="Image not supported" height="100" width="80">
+                        </ng-container>
+                        <ng-template #nonImg class="non-image">
+                            <mat-icon class="mat-icon-cart">attach_file</mat-icon>
+                        </ng-template>
+                    </div>
                 </div>
             </mat-card-content>
             <mat-card-actions>

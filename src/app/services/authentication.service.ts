@@ -1,10 +1,8 @@
-import { BookDto } from "./../models/book-dto";
 import { Registration } from "./../models/registration";
 import { HttpService } from "./http.service";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { Observable, BehaviorSubject } from "rxjs";
-import { Login } from "../models/login";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -25,10 +23,6 @@ export class AuthenticationService {
 
   private loginUrl: string = `${
     environment.USER_API_URL + environment.LOGIN_URL
-  }`;
-
-  private addBookUrl: string = `${
-    environment.ADMIN_API_URL + environment.ADD_BOOK
   }`;
 
   public setRole(role: string): void {
@@ -67,14 +61,5 @@ export class AuthenticationService {
   public login(loginDto: any) {
     console.log("fetching loginUrl : ", this.loginUrl);
     return this._httpService.postMethod(this.loginUrl, loginDto, "");
-  }
-
-  public addBook(bookDto: BookDto) {
-    console.log("add book url : ", this.addBookUrl);
-    return this._httpService.postMethod(
-      this.addBookUrl,
-      bookDto,
-      this._httpService.httpOptions
-    );
   }
 }
