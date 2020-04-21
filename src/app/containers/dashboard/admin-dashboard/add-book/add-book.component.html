@@ -14,13 +14,17 @@
                     <div class="title">
                         <mat-form-field appearance="legacy">
                             <mat-label>Title</mat-label>
-                            <input matInput placeholder="Enter book title" formControlName="title">
+                            <input matInput placeholder="Enter book title" formControlName="title" required>
+                            <mat-error *ngIf="addBookForm.get('title').hasError('required')">Must enter Tile of the book
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div class="author">
                         <mat-form-field appearance="legacy">
                             <mat-label>Author</mat-label>
-                            <input matInput placeholder="Enter author name" formControlName="author">
+                            <input matInput placeholder="Enter author name" formControlName="author" required>
+                            <mat-error *ngIf="addBookForm.get('author').hasError('required')">Must enter Book's Aut name
+                            </mat-error>
                         </mat-form-field>
                     </div>
                 </div>
@@ -28,7 +32,11 @@
                     <div class="price">
                         <mat-form-field appearance="legacy" style="width: 85%;">
                             <mat-label>Price</mat-label>
-                            <input matInput type="number" formControlName="price">
+                            <input matInput type="number" formControlName="price" required min="0">
+                            <mat-error *ngIf="addBookForm.get('price').hasError('required')">Assign some price value
+                            </mat-error>
+                            <mat-error *ngIf="addBookForm.get('price').hasError('min')">Can't assign negative value
+                            </mat-error>
                             <span matPrefix>₹&nbsp;&nbsp;</span>
                             <span matSuffix>.00</span>
                         </mat-form-field>
@@ -36,7 +44,11 @@
                     <div class="quantity">
                         <mat-form-field appearance="legacy" style="width: 95%;">
                             <mat-label>Quntity</mat-label>
-                            <input matInput type="number" formControlName="availableQuantity">
+                            <input matInput type="number" formControlName="availableQuantity" required min="1">
+                            <mat-error *ngIf="addBookForm.get('availableQuantity').hasError('required')">Mention
+                                available quantities</mat-error>
+                            <mat-error *ngIf="addBookForm.get('availableQuantity').hasError('min')">Minimum 1 quantity
+                                required</mat-error>
                         </mat-form-field>
                     </div>
                 </div>

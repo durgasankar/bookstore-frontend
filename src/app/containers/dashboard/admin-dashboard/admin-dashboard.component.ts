@@ -25,10 +25,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   isAdminUser(): boolean {
-    if (this._authenticationService.getRole() === "admin") {
-      return true;
-    }
-    return false;
+    if (this._authenticationService.getRole() === "admin") return true;
   }
 
   openAddBookDialog() {

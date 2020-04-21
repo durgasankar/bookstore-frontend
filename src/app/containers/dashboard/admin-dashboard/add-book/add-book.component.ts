@@ -39,9 +39,9 @@ export class AddBookComponent implements OnInit {
     this.addBookForm = this._formBuilder.group({
       title: ["", [Validators.required]],
       author: ["", [Validators.required]],
-      price: ["", [Validators.required]],
-      availableQuantity: ["", [Validators.required]],
-      imageUrl: ["", [Validators.required]],
+      price: ["", [Validators.required, Validators.min(0)]],
+      availableQuantity: ["", [Validators.required, Validators.min(1)]],
+      imageUrl: [""],
     });
   }
 

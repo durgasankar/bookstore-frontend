@@ -1,9 +1,29 @@
 <app-top-nav-bar [isAdmin]="isAdmin" [firstName]="firstName"></app-top-nav-bar>
 
-<!-- Shooping cart -->
-<div id="cart" fxLayout="row">
-    <button mat-icon-button matTooltip="Cart" (click)="openAddBookDialog()">
-        <mat-icon class="mat-icon-cart">add</mat-icon>
-    </button>
+<div class="display-page">
+    <!-- Add book -->
+    <div id="cart" fxLayout="row">
+        <button mat-icon-button matTooltip="Add a book" (click)="openAddBookDialog()">
+            <mat-icon class="add-book">add</mat-icon>
+        </button>
+    </div>
+    <!-- display all books -->
+    <div class="display-notes" fxLayout="row">
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+        <app-book></app-book>
+    </div>
 </div>
-books info admin
