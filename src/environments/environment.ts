@@ -13,6 +13,7 @@ export const environment = {
   LOGIN_URL: "/signin",
   ADD_BOOK: "/add",
   GET_ALL_ADMIN_BOOKS: "/get",
+  DELETE_BOOK_BY_ADMIN: "/remove",
 };
 
 /*

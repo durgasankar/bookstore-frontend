@@ -1,7 +1,7 @@
 import { AdminBookOperationService } from "./../../../../services/admin-book-operation.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
-import { MatSnackBar } from "@angular/material";
+import { Component, OnInit, Inject } from "@angular/core";
+import { MatSnackBar, MatDialogRef } from "@angular/material";
 import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
@@ -18,12 +18,14 @@ export class AddBookComponent implements OnInit {
   myUrl: any;
   imageToShow: any;
   addBookForm: FormGroup;
+  open: boolean;
   constructor(
     private _formBuilder: FormBuilder,
     private _adminBookService: AdminBookOperationService,
     private _matSnackBar: MatSnackBar,
     private _router: Router,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    public _matDialogRef: MatDialogRef<AddBookComponent>
   ) {}
 
   onURLinserted() {}
@@ -78,6 +80,7 @@ export class AddBookComponent implements OnInit {
   onSubmit() {
     console.log("form data overall : ", this.addBookForm.value);
     this.showSpinner = true;
+    this._matDialogRef.close();
     this._adminBookService.addBook(this.addBookForm.value).subscribe(
       (response: any) => {
         console.log("response : ", response);

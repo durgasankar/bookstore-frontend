@@ -50,8 +50,8 @@ import { AdminDashboardComponent } from "./containers/dashboard/admin-dashboard/
 import { TopNavBarComponent } from "./containers/dashboard/top-nav-bar/top-nav-bar.component";
 import { AddBookComponent } from "./containers/dashboard/admin-dashboard/add-book/add-book.component";
 import { AdminBookOperationService } from "./services/admin-book-operation.service";
-import { BookComponent } from './containers/dashboard/book/book.component';
-
+import { BookComponent } from "./containers/dashboard/book/book.component";
+import { DashboardComponent } from "./containers/dashboard/dashboard.component";
 const MaterialModule = [
   MatCheckboxModule,
   MatCheckboxModule,
@@ -98,6 +98,7 @@ const MaterialModule = [
     TopNavBarComponent,
     AddBookComponent,
     BookComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

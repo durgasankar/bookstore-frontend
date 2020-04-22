@@ -1,5 +1,6 @@
 import { AdminBook } from "./../../../models/admin-book";
 import { Component, OnInit, Input } from "@angular/core";
+import { AdminBookOperationService } from "src/app/services/admin-book-operation.service";
 
 @Component({
   selector: "app-book",
@@ -8,9 +9,18 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class BookComponent implements OnInit {
   @Input() adminBook: AdminBook;
-  constructor() {}
+  constructor(private _adminBookOperationService: AdminBookOperationService) {}
 
-  ngOnInit() {
-    console.log("fetched admin book in init of book : ", this.adminBook);
+  ngOnInit() {}
+
+  removeBookFromList(bookId) {
+    this._adminBookOperationService.removeBook(bookId).subscribe(
+      (response: any) => {
+        console.log("response: ", response);
+      },
+      (errors: any) => {
+        console.log("errors : ", errors);
+      }
+    );
   }
 }

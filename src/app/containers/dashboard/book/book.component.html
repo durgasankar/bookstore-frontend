@@ -15,7 +15,8 @@
         </mat-card-actions>
         <ng-template #admin>
             <mat-card-actions div fxLayout="row">
-                <button mat-button id="delete-the-book">Delete the Book</button>
+                <button mat-button id="delete-the-book" (click)="removeBookFromList(adminBook.bookId)">Delete the
+                    Book</button>
             </mat-card-actions>
         </ng-template>
 

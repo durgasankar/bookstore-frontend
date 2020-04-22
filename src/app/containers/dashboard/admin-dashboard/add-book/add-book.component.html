@@ -8,7 +8,7 @@
             Add a book
         </mat-card-title>
         <form [formGroup]="addBookForm"
-            (ngSubmit)="addBookForm.valid && addBookForm.get('imageUrl').value !== '' && onSubmit()">
+            (ngSubmit)="addBookForm.valid && addBookForm.get('imageUrl').value !== '' && onSubmit() || open = !open">
             <mat-card-content>
                 <div class="book-info" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2%">
                     <div class="title">

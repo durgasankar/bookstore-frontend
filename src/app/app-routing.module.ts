@@ -6,14 +6,22 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./containers/user-authentication/login/login.component";
 import { AdminDashboardComponent } from "./containers/dashboard/admin-dashboard/admin-dashboard.component";
+import { DashboardComponent } from "./containers/dashboard/dashboard.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/signin", pathMatch: "full" },
   { path: "signup", component: RegistrationComponent },
   { path: "signin", component: LoginComponent },
   { path: "verification/:token", component: ActivateAccountComponent },
-  { path: "dashboard/user", component: UserDashboardComponent },
-  { path: "dashboard/admin", component: AdminDashboardComponent },
+  {
+    path: "dashboard",
+    component: DashboardComponent,
+    children: [
+      { path: "admin", component: AdminDashboardComponent },
+      { path: "user", component: UserDashboardComponent },
+    ],
+  },
+
   { path: "**", component: PageNotFoundComponent },
 ];
 
