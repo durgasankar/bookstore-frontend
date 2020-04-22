@@ -12,6 +12,7 @@ export const environment = {
   ACTIVATE_ACCOUNT_URL: "/verification",
   LOGIN_URL: "/signin",
   ADD_BOOK: "/add",
+  GET_ALL_ADMIN_BOOKS: "/get",
 };
 
 /*

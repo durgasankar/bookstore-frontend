@@ -1,5 +1,73 @@
 mat-card {
   height: 300px;
   width: 180px;
-  background-color: red;
+  background-color: rgb(253, 250, 219);
+  margin: 0;
+}
+
+img {
+  background-size: cover;
+  margin: -16px -48px;
+  margin-bottom: 2px;
+  height: 180px;
+  border-radius: 4px;
+  padding: 2px;
+  width: 208px;
+  // blurred edge
+  box-shadow: 0 0 8px 8px #fff inset;
+}
+.mat-title {
+  margin-bottom: 10px;
+  padding: 0;
+  line-height: 1.2;
+  font-size: 16px;
+}
+// by default 16px reduced
+mat-card-content {
+  margin-right: -10px;
+}
+button {
+  width: 100%;
+}
+#add-to-bag {
+  background-color: rgb(43, 101, 236);
+  text-align: center;
+  color: #fff;
+  transition: 0.3s;
+}
+#add-to-bag:hover {
+  background-color: #659ec7;
+}
+#watchlist {
+  background-color: #4aa02c;
+  color: #fff;
+  letter-spacing: 1px;
+  padding: 0;
+  margin: 0px;
+  transition: 0.3s;
+}
+#watchlist:hover {
+  background-color: #54c571;
+}
+#delete-the-book {
+  background-color: #f70d1a;
+  color: #fff;
+  transition: 0.3s;
+}
+#delete-the-book:hover {
+  background-color: #f75d59;
+}
+// overriding default margin of .mat-card-subtitle
+.mat-card-actions,
+.mat-card-content,
+.mat-card-subtitle {
+  display: block;
+  margin-bottom: 0px;
+}
+
+.mat-subheading-1 {
+  position: relative;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 6px;
 }

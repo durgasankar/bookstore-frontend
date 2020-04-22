@@ -5,11 +5,15 @@ app-top-nav-bar {
   padding-bottom: 1px;
 }
 
+// defining margin from both sides
+.display-books-container {
+  margin: 0 7%;
+}
 // simple making the note fit to page
 .display-notes {
   position: relative;
   flex-wrap: wrap;
-  padding: 10px 7%;
+  padding: 10px;
   display: block;
   justify-content: space-between;
   align-items: flex-start;
@@ -18,7 +22,7 @@ app-top-nav-bar {
 
 // overall padding assigned to all individual books
 app-book {
-  padding: 10px;
+  padding: 10px, 0;
 }
 
 // calculated the height to be substracted from 100vh as top nav bar

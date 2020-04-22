@@ -1,8 +1,23 @@
 <div class="book-container">
     <mat-card>
         <mat-card-header>
-            <img src="https://img.etimg.com/thumb/width-640,height-480,imgsize-66493,resizemode-1,msid-74256962/240-250-militants-active-in-kashmir-25-killed-so-far-in-2020-jk-dgp.jpg"
-                alt="Photo of a Shiba Inu" width="160px" height="300px">
+            <img mat-card-image [src]="adminBook.imageUrl" alt="Book Photo">
         </mat-card-header>
+        <mat-card-content>
+            <div class="mat-title">{{ adminBook.title }}</div>
+            <mat-card-subtitle>by {{ adminBook.author }}</mat-card-subtitle>
+            <div class="mat-subheading-1">{{ adminBook.price }}</div>
+            <mat-card-subtitle>Available quantity: {{ adminBook.availableQuantity }}</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions div fxLayout="row" fxLayoutGap="8px" *ngIf="!adminBook.admin; else admin">
+            <button mat-button id="add-to-bag">Add to Bag</button>
+            <button mat-button id="watchlist">Watchlist</button>
+        </mat-card-actions>
+        <ng-template #admin>
+            <mat-card-actions div fxLayout="row">
+                <button mat-button id="delete-the-book">Delete the Book</button>
+            </mat-card-actions>
+        </ng-template>
+
     </mat-card>
 </div>
