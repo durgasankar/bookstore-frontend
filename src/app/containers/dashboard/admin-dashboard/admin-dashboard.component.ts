@@ -22,10 +22,10 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit() {
     this.firstName = localStorage.getItem("firstName");
     // this.isAdmin = this.isAdminUser();
-    this._adminBookOperationService.autoRefesh.subscribe(() => {
-      this.getAllBooksForAdmin;
-    });
     this.getAllBooksForAdmin();
+    this._adminBookOperationService.autoRefesh.subscribe(() => {
+      this.getAllBooksForAdmin();
+    });
   }
 
   // isAdminUser() {
@@ -50,7 +50,7 @@ export class AdminDashboardComponent implements OnInit {
       (response: any) => {
         console.log("response : ", response);
         this.adminBooks = response.list;
-        // console.log("admin book list after transfer : ", this.adminBooks);
+        console.log("admin book list after transfer : ", this.adminBooks);
       },
       (errors: any) => {
         console.log("errors : ", errors);

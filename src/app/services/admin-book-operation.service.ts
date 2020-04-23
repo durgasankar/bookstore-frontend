@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { BookDto } from "../models/book-dto";
 import { Subject, BehaviorSubject, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
+import { HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
@@ -40,12 +41,11 @@ export class AdminBookOperationService {
       );
   }
 
-  public getAllBooks() {
+  public getAllBooks(): Observable<any> {
     console.log("#service reached get operation started.");
-    return this._httpService.getMethod(
-      this.getAdminBooksUrl,
-      this._httpService.httpOptions
-    );
+    return this._httpService.getMethod(this.getAdminBooksUrl, {
+      headers: new HttpHeaders().set("token", localStorage.token),
+    });
   }
 
   public removeBook(bookId: number): Observable<any> {

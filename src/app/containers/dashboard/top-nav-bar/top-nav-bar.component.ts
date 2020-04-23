@@ -11,15 +11,16 @@ import { MatSnackBar } from "@angular/material";
 export class TopNavBarComponent implements OnInit {
   bookStoreName: string = "Bookstore";
   profilePicUser: string = "./assets/durgasankar.jpg";
-  @Input() firstName: string;
-  @Input() isAdmin: boolean = false;
+  firstName: string;
   admin: boolean;
 
   constructor(private _router: Router, private _matSnackBar: MatSnackBar) {
     this.admin = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.firstName = localStorage.getItem("firstName");
+  }
 
   refreshButton(): void {
     console.log("reloading page");

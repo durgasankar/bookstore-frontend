@@ -51,15 +51,7 @@ export class LoginComponent implements OnInit {
     this._authenticationService.login(this.loginForm.value).subscribe(
       (response: any) => {
         console.log("response message : ", response);
-        this._matSnackBar.open(
-          "Welcome Mr/s. " +
-            response.loginInfo.firstName +
-            ", to " +
-            response.loginInfo.role +
-            " page.",
-          "ok",
-          { duration: 3000 }
-        );
+
         // valid user
         if (response.statusCode === 200) {
           localStorage.setItem("token", response.loginInfo.token);
@@ -70,13 +62,39 @@ export class LoginComponent implements OnInit {
           // user
           if (this.assignedRole.match("user")) {
             this._router.navigateByUrl("dashboard/user");
+            this._matSnackBar.open(
+              "Welcome Mr/s. " +
+                response.loginInfo.firstName +
+                ", to " +
+                response.loginInfo.role +
+                " page.",
+              "ok",
+              { duration: 3000 }
+            );
             // admin
           } else {
             this._router.navigateByUrl("dashboard/admin");
+            this._matSnackBar.open(
+              "Welcome Mr/s. " +
+                response.loginInfo.firstName +
+                ", to " +
+                response.loginInfo.role +
+                " page.",
+              "ok",
+              { duration: 3000 }
+            );
           }
         } else {
           // un-identified role
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);
+          this._matSnackBar.open(
+            "Hallo Mr/s. " +
+              response.loginInfo.firstName +
+              ", " +
+              response.message,
+            "ok",
+            { duration: 3000 }
+          );
         }
       },
       (errors: any) => {
