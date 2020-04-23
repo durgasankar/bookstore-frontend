@@ -62,4 +62,8 @@ export class AuthenticationService {
     console.log("fetching loginUrl : ", this.loginUrl);
     return this._httpService.postMethod(this.loginUrl, loginDto, "");
   }
+
+  isLoggedIn() {
+    if (localStorage.getItem("token")) return true;
+  }
 }

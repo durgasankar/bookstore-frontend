@@ -6,6 +6,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./containers/user-authentication/login/login.component";
 import { AdminDashboardComponent } from "./containers/dashboard/admin-dashboard/admin-dashboard.component";
 import { DashboardComponent } from "./containers/dashboard/dashboard.component";
+import { AuthGuardService } from "./services/auth-guard.service";
 
 const routes: Routes = [
   { path: "", redirectTo: "/signin", pathMatch: "full" },
@@ -15,6 +16,7 @@ const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
+    canActivate: [AuthGuardService],
     children: [{ path: "", component: AdminDashboardComponent }],
   },
 

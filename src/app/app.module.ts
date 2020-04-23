@@ -1,3 +1,4 @@
+import { AuthGuardService } from "./services/auth-guard.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -109,7 +110,12 @@ const MaterialModule = [
     HttpClientModule,
     NgxSpinnerModule,
   ],
-  providers: [HttpService, AuthenticationService, AdminBookOperationService],
+  providers: [
+    HttpService,
+    AuthenticationService,
+    AdminBookOperationService,
+    AuthGuardService,
+  ],
   entryComponents: [AddBookComponent],
   bootstrap: [AppComponent],
 })
