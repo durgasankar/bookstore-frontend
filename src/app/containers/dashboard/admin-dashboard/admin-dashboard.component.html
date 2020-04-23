@@ -8,7 +8,7 @@
     <!-- display all books -->
     <div class="display-books-container">
         <div class="display-notes" fxLayout="row" *ngFor="let adminBook of adminBooks">
-            <app-book [adminBook]="adminBook"></app-book>
+            <app-book [adminBook]="adminBook" [isAdmin]="isAdmin"></app-book>
         </div>
     </div>
 </div>

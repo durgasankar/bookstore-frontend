@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { AdminBookOperationService } from "src/app/services/admin-book-operation.service";
-import { AdminBook } from "src/app/models/admin-book";
 
 @Component({
   selector: "app-dashboard",
@@ -8,7 +7,16 @@ import { AdminBook } from "src/app/models/admin-book";
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
+  assignedRole: string;
+  adminRole: boolean;
   constructor(private _adminBookOperationService: AdminBookOperationService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.assignedRole = localStorage.role;
+    this.adminRole = this.isAdminUser();
+  }
+
+  isAdminUser() {
+    if (this.assignedRole.includes("admin")) return true;
+  }
 }

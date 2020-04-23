@@ -1,4 +1,3 @@
-import { UserDashboardComponent } from "./containers/dashboard/user-dashboard/user-dashboard.component";
 import { ActivateAccountComponent } from "./containers/user-authentication/activate-account/activate-account.component";
 import { RegistrationComponent } from "./containers/user-authentication/registration/registration.component";
 import { PageNotFoundComponent } from "./containers/page-not-found/page-not-found.component";
@@ -16,10 +15,7 @@ const routes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
-    children: [
-      { path: "admin", component: AdminDashboardComponent },
-      { path: "user", component: UserDashboardComponent },
-    ],
+    children: [{ path: "", component: AdminDashboardComponent }],
   },
 
   { path: "**", component: PageNotFoundComponent },

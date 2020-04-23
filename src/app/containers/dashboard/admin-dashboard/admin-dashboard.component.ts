@@ -1,6 +1,6 @@
 import { AdminBook } from "./../../../models/admin-book";
 import { AdminBookOperationService } from "./../../../services/admin-book-operation.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { AddBookComponent } from "./add-book/add-book.component";
 
@@ -13,6 +13,8 @@ export class AdminDashboardComponent implements OnInit {
   firstName: string;
   isAdmin: boolean;
   adminBooks: AdminBook[];
+  assignedRole: string;
+  @Input() adminRole: boolean;
 
   constructor(
     private dialog: MatDialog,
@@ -20,7 +22,9 @@ export class AdminDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.firstName = localStorage.getItem("firstName");
+    this.firstName = localStorage.firstName;
+    this.assignedRole = localStorage.role;
+    this.isAdmin = this.isAdminUser();
     // this.isAdmin = this.isAdminUser();
     this.getAllBooksForAdmin();
     this._adminBookOperationService.autoRefesh.subscribe(() => {
@@ -28,11 +32,9 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  // isAdminUser() {
-  //   if (this._authenticationService.getRole().includes("admin")) {
-  //     return true;
-  //   }
-  // }
+  isAdminUser() {
+    if (this.assignedRole.includes("admin")) return true;
+  }
 
   openAddBookDialog() {
     const matDialogueReference = this.dialog.open(AddBookComponent, {

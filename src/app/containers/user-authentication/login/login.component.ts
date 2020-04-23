@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
     this._authenticationService.login(this.loginForm.value).subscribe(
       (response: any) => {
         console.log("response message : ", response);
-
         // valid user
         if (response.statusCode === 200) {
           localStorage.setItem("token", response.loginInfo.token);
@@ -60,30 +59,17 @@ export class LoginComponent implements OnInit {
           this.assignedRole = response.loginInfo.role;
           this._authenticationService.setRole(response.loginInfo.role);
           // user
-          if (this.assignedRole.match("user")) {
-            this._router.navigateByUrl("dashboard/user");
-            this._matSnackBar.open(
-              "Welcome Mr/s. " +
-                response.loginInfo.firstName +
-                ", to " +
-                response.loginInfo.role +
-                " page.",
-              "ok",
-              { duration: 3000 }
-            );
-            // admin
-          } else {
-            this._router.navigateByUrl("dashboard/admin");
-            this._matSnackBar.open(
-              "Welcome Mr/s. " +
-                response.loginInfo.firstName +
-                ", to " +
-                response.loginInfo.role +
-                " page.",
-              "ok",
-              { duration: 3000 }
-            );
-          }
+          this._router.navigateByUrl("dashboard");
+          this._matSnackBar.open(
+            "Welcome Mr/s. " +
+              response.loginInfo.firstName +
+              ", to " +
+              response.loginInfo.role +
+              " page.",
+            "ok",
+            { duration: 3000 }
+          );
+          // admin
         } else {
           // un-identified role
           this._router.navigateByUrl(`${environment.LOGIN_URL}`);

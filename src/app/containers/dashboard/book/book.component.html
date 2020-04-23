@@ -9,7 +9,7 @@
             <div class="mat-subheading-1">{{ adminBook.price }}</div>
             <mat-card-subtitle>Available quantity: {{ adminBook.availableQuantity }}</mat-card-subtitle>
         </mat-card-content>
-        <mat-card-actions div fxLayout="row" fxLayoutGap="8px" *ngIf="!adminBook.admin; else admin">
+        <mat-card-actions div fxLayout="row" fxLayoutGap="8px" *ngIf="!isAdmin; else admin">
             <button mat-button id="add-to-bag">Add to Bag</button>
             <button mat-button id="watchlist">Watchlist</button>
         </mat-card-actions>

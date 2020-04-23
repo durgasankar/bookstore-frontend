@@ -45,7 +45,6 @@ import { PageNotFoundComponent } from "./containers/page-not-found/page-not-foun
 import { LoginComponent } from "./containers/user-authentication/login/login.component";
 import { HttpClientModule } from "@angular/common/http";
 import { ActivateAccountComponent } from "./containers/user-authentication/activate-account/activate-account.component";
-import { UserDashboardComponent } from "./containers/dashboard/user-dashboard/user-dashboard.component";
 import { AdminDashboardComponent } from "./containers/dashboard/admin-dashboard/admin-dashboard.component";
 import { TopNavBarComponent } from "./containers/dashboard/top-nav-bar/top-nav-bar.component";
 import { AddBookComponent } from "./containers/dashboard/admin-dashboard/add-book/add-book.component";
@@ -93,7 +92,6 @@ const MaterialModule = [
     PageNotFoundComponent,
     LoginComponent,
     ActivateAccountComponent,
-    UserDashboardComponent,
     AdminDashboardComponent,
     TopNavBarComponent,
     AddBookComponent,

@@ -12,14 +12,17 @@ export class TopNavBarComponent implements OnInit {
   bookStoreName: string = "Bookstore";
   profilePicUser: string = "./assets/durgasankar.jpg";
   firstName: string;
-  admin: boolean;
+  isAdmin: boolean;
+  @Input() adminRole: string;
 
-  constructor(private _router: Router, private _matSnackBar: MatSnackBar) {
-    this.admin = false;
-  }
+  constructor(private _router: Router, private _matSnackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.firstName = localStorage.getItem("firstName");
+    this.firstName = localStorage.firstName;
+    this.isAdmin = this.isAdminUser();
+  }
+  isAdminUser() {
+    if (localStorage.role.includes("admin")) return true;
   }
 
   refreshButton(): void {

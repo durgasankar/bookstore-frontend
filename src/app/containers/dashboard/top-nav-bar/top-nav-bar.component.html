@@ -20,16 +20,16 @@
                 </button>
             </div>
             <!-- Shooping cart -->
-            <!-- <div id="cart" fxLayout="row">
-                <button mat-icon-button matTooltip="Cart">
-                    <mat-icon class="mat-icon-cart">add_shopping_cart</mat-icon>
-                </button>
-            </div> -->
-            <div>
+            <div id="cart" fxLayout="row" *ngIf="!adminRole; else admin">
                 <button mat-icon-button matTooltip="Cart">
                     <mat-icon class="mat-icon-cart">add_shopping_cart</mat-icon>
                 </button>
             </div>
+            <ng-template #admin>
+                <button mat-icon-button matTooltip="add">
+                    <mat-icon class="mat-icon-cart">add</mat-icon>
+                </button>
+            </ng-template>
             <!-- Profile -->
             <!-- on click it will open menu -->
             <div>
