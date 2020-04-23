@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { Router } from "@angular/router";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatDialog } from "@angular/material";
+import { AdminBookOperationService } from "src/app/services/admin-book-operation.service";
+import { AddBookComponent } from "../admin-dashboard/add-book/add-book.component";
 
 @Component({
   selector: "app-top-nav-bar",
@@ -15,7 +17,12 @@ export class TopNavBarComponent implements OnInit {
   isAdmin: boolean;
   @Input() adminRole: string;
 
-  constructor(private _router: Router, private _matSnackBar: MatSnackBar) {}
+  constructor(
+    private _router: Router,
+    private _matSnackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private _adminBookOperationService: AdminBookOperationService
+  ) {}
 
   ngOnInit() {
     this.firstName = localStorage.firstName;
@@ -36,5 +43,16 @@ export class TopNavBarComponent implements OnInit {
     });
     this._router.navigateByUrl(`${environment.LOGIN_URL}`);
     localStorage.clear();
+  }
+
+  openAddBookDialog() {
+    const matDialogueReference = this.dialog.open(AddBookComponent, {
+      width: "auto",
+      height: "auto",
+      panelClass: "custom-dialog-container",
+    });
+    matDialogueReference.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed with out update");
+    });
   }
 }

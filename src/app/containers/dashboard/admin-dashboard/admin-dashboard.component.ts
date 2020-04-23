@@ -1,25 +1,30 @@
 import { AdminBook } from "./../../../models/admin-book";
 import { AdminBookOperationService } from "./../../../services/admin-book-operation.service";
-import { Component, OnInit, Input } from "@angular/core";
-import { MatDialog } from "@angular/material";
-import { AddBookComponent } from "./add-book/add-book.component";
+import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
 
 @Component({
   selector: "app-admin-dashboard",
   templateUrl: "./admin-dashboard.component.html",
   styleUrls: ["./admin-dashboard.component.scss"],
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit, AfterViewInit {
   firstName: string;
   isAdmin: boolean;
   adminBooks: AdminBook[];
   assignedRole: string;
+  cartSize: number;
   @Input() adminRole: boolean;
+  // dataSource: MatTableDataSource<AdminBook>;
 
-  constructor(
-    private dialog: MatDialog,
-    private _adminBookOperationService: AdminBookOperationService
-  ) {}
+  constructor(private _adminBookOperationService: AdminBookOperationService) {
+    // Assign the data to the data source for the table to render
+    // this.dataSource = new MatTableDataSource(this.adminBooks);
+  }
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit() {
+    // this.dataSource.paginator = this.paginator;
+  }
 
   ngOnInit() {
     this.firstName = localStorage.firstName;
@@ -36,22 +41,12 @@ export class AdminDashboardComponent implements OnInit {
     if (this.assignedRole.includes("admin")) return true;
   }
 
-  openAddBookDialog() {
-    const matDialogueReference = this.dialog.open(AddBookComponent, {
-      width: "auto",
-      height: "auto",
-      panelClass: "custom-dialog-container",
-    });
-    matDialogueReference.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed with out update");
-    });
-  }
-
   getAllBooksForAdmin() {
     this._adminBookOperationService.getAllBooks().subscribe(
       (response: any) => {
         console.log("response : ", response);
         this.adminBooks = response.list;
+        this.cartSize = this.adminBooks.length;
         console.log("admin book list after transfer : ", this.adminBooks);
       },
       (errors: any) => {

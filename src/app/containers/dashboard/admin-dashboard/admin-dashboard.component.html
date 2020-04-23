@@ -1,9 +1,31 @@
 <div class="display-page">
     <!-- Add book -->
-    <div id="cart" fxLayout="row">
-        <button mat-icon-button matTooltip="Add a book" (click)="openAddBookDialog()">
-            <mat-icon class="add-book">add</mat-icon>
-        </button>
+    <div id="cart" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="title">
+            Books
+            <span id="cart-size">({{ cartSize }} items)</span>
+        </div>
+        <div class="sort-choice">
+            <form>
+                <mat-form-field appearance="outline" id="my-form-field" style="font-size: 12px">
+                    <mat-label>Sort by relevance</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="food" class="mat-select">
+                        <mat-option>
+                            Choose Relevance
+                        </mat-option>
+                        <mat-option>
+                            Price:High To Low
+                        </mat-option>
+                        <mat-option>
+                            Price:Low To High
+                        </mat-option>
+                        <mat-option>
+                            Newest Arrival
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
     </div>
     <!-- display all books -->
     <div class="display-books-container">
@@ -11,4 +33,6 @@
             <app-book [adminBook]="adminBook" [isAdmin]="isAdmin"></app-book>
         </div>
     </div>
+
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
 </div>

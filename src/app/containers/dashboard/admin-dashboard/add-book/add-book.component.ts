@@ -79,13 +79,11 @@ export class AddBookComponent implements OnInit {
 
   onSubmit() {
     console.log("form data overall : ", this.addBookForm.value);
-    this.showSpinner = true;
     this._matDialogRef.close();
     this._adminBookService.addBook(this.addBookForm.value).subscribe(
       (response: any) => {
         console.log("response : ", response);
-        this._matSnackBar.open(response.message, "ok", { duration: 4000 });
-        this.showSpinner = false;
+        this._matSnackBar.open(response.message, "ok", { duration: 3000 });
       },
       (errors: any) => {
         console.log("errors : ", errors);

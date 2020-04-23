@@ -13,6 +13,7 @@ import { Router } from "@angular/router";
 export class BookComponent implements OnInit {
   @Input() adminBook: AdminBook;
   @Input() isAdmin: boolean;
+
   constructor(
     private _adminBookOperationService: AdminBookOperationService,
     private _matSnackBar: MatSnackBar,
