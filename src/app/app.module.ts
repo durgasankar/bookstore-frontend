@@ -53,6 +53,7 @@ import { AddBookComponent } from "./containers/dashboard/admin-dashboard/add-boo
 import { AdminBookOperationService } from "./services/admin-book-operation.service";
 import { BookComponent } from "./containers/dashboard/book/book.component";
 import { DashboardComponent } from "./containers/dashboard/dashboard.component";
+import { UserBookService } from "./services/user-book.service";
 const MaterialModule = [
   MatCheckboxModule,
   MatCheckboxModule,
@@ -114,9 +115,10 @@ const MaterialModule = [
   ],
   providers: [
     HttpService,
+    AuthGuardService,
     AuthenticationService,
     AdminBookOperationService,
-    AuthGuardService,
+    UserBookService,
   ],
   entryComponents: [AddBookComponent],
   bootstrap: [AppComponent],

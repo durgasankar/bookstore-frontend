@@ -12,4 +12,5 @@ export class UserBook {
   public isAddedToWatchlist: boolean;
   public isAddedToCart: boolean;
   public isCheckedOut: boolean;
+  public serialNumber: number;
 }

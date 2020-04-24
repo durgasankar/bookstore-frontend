@@ -1,16 +1,18 @@
+import { UserBook } from "./../../../models/user-books";
 import { AdminBook } from "./../../../models/admin-book";
 import { AdminBookOperationService } from "./../../../services/admin-book-operation.service";
-import { Component, OnInit, Input, AfterViewInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
   selector: "app-admin-dashboard",
   templateUrl: "./admin-dashboard.component.html",
   styleUrls: ["./admin-dashboard.component.scss"],
 })
-export class AdminDashboardComponent implements OnInit, AfterViewInit {
+export class AdminDashboardComponent implements OnInit {
   firstName: string;
   isAdmin: boolean;
   adminBooks: AdminBook[];
+  userBooks: UserBook[];
   assignedRole: string;
   cartSize: number;
   @Input() adminRole: boolean;
@@ -22,10 +24,6 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     // this.dataSource = new MatTableDataSource(this.adminBooks);
   }
   // @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-  }
 
   ngOnInit() {
     this.firstName = localStorage.firstName;

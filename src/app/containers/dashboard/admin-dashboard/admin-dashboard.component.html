@@ -1,4 +1,4 @@
-<div class="display-page">
+<div class="display-page" fxLayout="column">
     <!-- Add book -->
     <div id="cart" fxLayout="row" fxLayoutAlign="space-between center">
         <div class="title">
@@ -37,7 +37,7 @@
 
     <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
     <div class="paginator">
-        <pagination-controls (pageChange)="page = $event" id="first" style="position: relative; display: block;">
+        <pagination-controls (pageChange)="page = $event" id="first" align=center>
         </pagination-controls>
     </div>
 </div>

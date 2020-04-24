@@ -12,7 +12,7 @@ export class HttpService {
   public httpOptions = {
     headers: new HttpHeaders({
       "content-type": "application/json",
-      token: localStorage.getItem("token"),
+      token: localStorage.token,
     }),
   };
 

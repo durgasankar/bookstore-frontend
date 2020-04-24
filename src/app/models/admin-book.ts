@@ -10,4 +10,6 @@ export class AdminBook {
   public removed: boolean;
   public outOfStock: boolean;
   public admin: boolean;
+  public isAddedToBag: boolean;
+  public isAddedToWatchList: boolean;
 }
