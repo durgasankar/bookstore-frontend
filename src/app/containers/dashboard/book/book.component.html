@@ -9,9 +9,17 @@
             <div class="mat-subheading-1">{{ adminBook.price }}</div>
             <mat-card-subtitle>Available quantity: {{ adminBook.availableQuantity }}</mat-card-subtitle>
         </mat-card-content>
-        <mat-card-actions div fxLayout="row" fxLayoutGap="8px" *ngIf="!isAdmin; else admin">
-            <button mat-button id="add-to-bag">Add to Bag</button>
-            <button mat-button id="watchlist">Watchlist</button>
+        <mat-card-actions div fxLayout="row" fxLayoutGap="1%" *ngIf="!isAdmin; else admin">
+            <button mat-button id="add-to-bag" (click)="addToCart(adminBook.bookId)"
+                *ngIf="!isAddedToBag; else removeFromBag">Add to Bag</button>
+            <ng-template #removeFromBag>
+                <button mat-button id="remove-from-bag" (click)="addToCart(adminBook.bookId)">Remove Item</button>
+            </ng-template>
+            <button mat-button id="watchlist" (click)="addToWatchList(adminBook.bookId)"
+                *ngIf="!isAddedToWatchList; else removeFromWatchList">Watchlist</button>
+            <ng-template #removeFromWatchList>
+                <button mat-button id="remove-watch" (click)="addToWatchList(adminBook.bookId)">Remove</button>
+            </ng-template>
         </mat-card-actions>
         <ng-template #admin>
             <mat-card-actions div fxLayout="row">

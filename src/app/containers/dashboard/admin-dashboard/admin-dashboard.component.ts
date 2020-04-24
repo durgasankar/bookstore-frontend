@@ -14,6 +14,7 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   assignedRole: string;
   cartSize: number;
   @Input() adminRole: boolean;
+  page: number = 1;
   // dataSource: MatTableDataSource<AdminBook>;
 
   constructor(private _adminBookOperationService: AdminBookOperationService) {

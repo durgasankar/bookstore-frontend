@@ -13,6 +13,8 @@ import { Router } from "@angular/router";
 export class BookComponent implements OnInit {
   @Input() adminBook: AdminBook;
   @Input() isAdmin: boolean;
+  isAddedToBag: boolean = false;
+  isAddedToWatchList: boolean = false;
 
   constructor(
     private _adminBookOperationService: AdminBookOperationService,
@@ -43,5 +45,24 @@ export class BookComponent implements OnInit {
         }
       }
     );
+  }
+  addToCart(bookId: number) {
+    if (this.isAddedToBag === false) {
+      this.isAddedToBag = true;
+    } else {
+      this.isAddedToBag = false;
+    }
+    console.log("note id : ", bookId);
+    console.log(" value : ", this.isAddedToBag);
+  }
+
+  addToWatchList(bookId: number) {
+    if (this.isAddedToWatchList === false) {
+      this.isAddedToWatchList = true;
+    } else {
+      this.isAddedToWatchList = false;
+    }
+    console.log("note id : ", bookId);
+    console.log(" value : ", this.isAddedToWatchList);
   }
 }

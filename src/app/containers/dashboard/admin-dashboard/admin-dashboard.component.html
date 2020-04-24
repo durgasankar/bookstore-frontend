@@ -29,10 +29,15 @@
     </div>
     <!-- display all books -->
     <div class="display-books-container">
-        <div class="display-notes" fxLayout="row" *ngFor="let adminBook of adminBooks">
+        <div class="display-notes" fxLayout="row"
+            *ngFor="let adminBook of adminBooks | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }">
             <app-book [adminBook]="adminBook" [isAdmin]="isAdmin"></app-book>
         </div>
     </div>
 
     <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+    <div class="paginator">
+        <pagination-controls (pageChange)="page = $event" id="first" style="position: relative; display: block;">
+        </pagination-controls>
+    </div>
 </div>

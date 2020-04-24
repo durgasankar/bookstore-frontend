@@ -46,6 +46,18 @@ button {
   margin: 0px;
   transition: 0.3s;
 }
+#remove-watch {
+  background-color: #f75d59;
+  color: #fff;
+  letter-spacing: 1px;
+  padding: 0;
+  margin: 0px;
+  transition: 0.3s;
+}
+
+#remove-watch:hover {
+  background-color: #f70d1a;
+}
 #watchlist:hover {
   background-color: #54c571;
 }
@@ -56,6 +68,16 @@ button {
 }
 #delete-the-book:hover {
   background-color: #f75d59;
+}
+
+#remove-from-bag {
+  color: #fff;
+  background-color: #c47451;
+  transition: 0.3s;
+}
+
+#remove-from-bag:hover {
+  background-color: #f62217;
 }
 // overriding default margin of .mat-card-subtitle
 .mat-card-actions,
