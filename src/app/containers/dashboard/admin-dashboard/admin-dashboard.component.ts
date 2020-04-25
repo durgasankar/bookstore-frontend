@@ -10,6 +10,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class AdminDashboardComponent implements OnInit {
   firstName: string;
+  length: number;
   isAdmin: boolean;
   adminBooks: AdminBook[];
   userBooks: UserBook[];

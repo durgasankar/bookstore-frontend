@@ -54,6 +54,7 @@ import { AdminBookOperationService } from "./services/admin-book-operation.servi
 import { BookComponent } from "./containers/dashboard/book/book.component";
 import { DashboardComponent } from "./containers/dashboard/dashboard.component";
 import { UserBookService } from "./services/user-book.service";
+import { UserCartComponent } from './containers/dashboard/user-cart/user-cart.component';
 const MaterialModule = [
   MatCheckboxModule,
   MatCheckboxModule,
@@ -100,6 +101,7 @@ const MaterialModule = [
     AddBookComponent,
     BookComponent,
     DashboardComponent,
+    UserCartComponent,
   ],
   imports: [
     BrowserModule,

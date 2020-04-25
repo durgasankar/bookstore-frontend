@@ -28,6 +28,10 @@ export class UserBookService {
     environment.USER_BOOK_API_URL + environment.GET_ALL_ADMIN_BOOKS
   }`;
 
+  private getUserBooksOnCartUrl: string = `${
+    environment.USER_BOOK_API_URL + environment.GET_ALL_CART_BOOKS
+  }`;
+
   public addRemoveFromCart(bookId: number): Observable<any> {
     console.log("#service reached for add remove cart operation");
     return this._httpService
@@ -61,6 +65,13 @@ export class UserBookService {
   public getAllUserBooks(): Observable<any> {
     console.log("#service reached get operation started.");
     return this._httpService.getMethod(this.getUserBooksUrl, {
+      headers: new HttpHeaders().set("token", localStorage.token),
+    });
+  }
+
+  public getAllUserCartBooks(): Observable<any> {
+    console.log("#service reached get cart operation started.");
+    return this._httpService.getMethod(this.getUserBooksOnCartUrl, {
       headers: new HttpHeaders().set("token", localStorage.token),
     });
   }

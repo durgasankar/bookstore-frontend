@@ -1,3 +1,4 @@
+import { UserCartComponent } from "./containers/dashboard/user-cart/user-cart.component";
 import { ActivateAccountComponent } from "./containers/user-authentication/activate-account/activate-account.component";
 import { RegistrationComponent } from "./containers/user-authentication/registration/registration.component";
 import { PageNotFoundComponent } from "./containers/page-not-found/page-not-found.component";
@@ -17,7 +18,10 @@ const routes: Routes = [
     path: "dashboard",
     component: DashboardComponent,
     canActivate: [AuthGuardService],
-    children: [{ path: "", component: AdminDashboardComponent }],
+    children: [
+      { path: "", component: AdminDashboardComponent },
+      { path: "cart", component: UserCartComponent },
+    ],
   },
 
   { path: "**", component: PageNotFoundComponent },

@@ -21,7 +21,7 @@
             </div>
             <!-- Shooping cart -->
             <div id="cart" fxLayout="row" *ngIf="!adminRole; else admin">
-                <button mat-icon-button matTooltip="Cart">
+                <button mat-icon-button matTooltip="Cart" [routerLink]="['cart']">
                     <mat-icon class="mat-icon-cart">add_shopping_cart</mat-icon>
                 </button>
             </div>

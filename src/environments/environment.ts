@@ -17,6 +17,7 @@ export const environment = {
   DELETE_BOOK_BY_ADMIN: "/remove",
   ADD_REMOVE_FROM_CART: "/cart?id=",
   ADD_REMOVE_FROM_WATCHLIST: "/watchlist?id=",
+  GET_ALL_CART_BOOKS: "/cart",
 };
 
 /*
