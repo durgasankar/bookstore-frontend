@@ -27,9 +27,6 @@ export class UserCartComponent implements OnInit {
       this.getCartList();
     });
     this.getCartList();
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ["", Validators.required],
-    });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ["", Validators.required],
     });
@@ -44,6 +41,7 @@ export class UserCartComponent implements OnInit {
         console.log("cart list : ", this.cartList);
         const price = this.cartList.map((fetchedBook) => fetchedBook.price);
         const total = price.reduce((a, b) => a + b, 0);
+        // const tota = quantity.
         this.totalAmount = total;
       },
       (errors) => {
@@ -70,12 +68,11 @@ export class UserCartComponent implements OnInit {
     });
   }
 
-  calculateTotal(book: UserBook): number {
-    this.cartList.forEach((fetchedBook) => {
-      if (fetchedBook.bookCode.match(book.bookCode)) {
-        return fetchedBook.price * fetchedBook.purchasedQuantity;
-      }
-    });
-    return 0;
-  }
+  // calculateTotal(book: UserBook) {
+  //   this.cartList.forEach((fetchedBook) => {
+  //     if (fetchedBook.bookCode.match(book.bookCode)) {
+  //       this.totalAmount = fetchedBook.price * fetchedBook.purchasedQuantity;
+  //     }
+  //   });
+  // }
 }
