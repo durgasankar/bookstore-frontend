@@ -2,7 +2,9 @@ import { UserBookService } from "./../../../services/user-book.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { UserBook } from "src/app/models/user-books";
-import { MatTableDataSource } from "@angular/material";
+import { MatSnackBar } from "@angular/material";
+import { environment } from "src/environments/environment";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-user-cart",
@@ -19,7 +21,9 @@ export class UserCartComponent implements OnInit {
   totalAmount: number;
   constructor(
     private _formBuilder: FormBuilder,
-    private _userBookService: UserBookService
+    private _userBookService: UserBookService,
+    private _matSnackBar: MatSnackBar,
+    private _router: Router
   ) {}
 
   ngOnInit() {
@@ -75,4 +79,34 @@ export class UserCartComponent implements OnInit {
   //     }
   //   });
   // }
+
+  removeFromCart(fetchedBook: UserBook) {
+    console.log("book code : ", fetchedBook.bookCode);
+    // console.log(" value : ", this.isAddedToBag);
+    this._userBookService.removeFromCart(fetchedBook.bookCode).subscribe(
+      (response: any) => {
+        console.log("response : ", response);
+        this._matSnackBar.open(
+          fetchedBook.title + " " + response.message,
+          "ok",
+          { duration: 3000 }
+        );
+      },
+      (errors: any) => {
+        console.log("errors : ", errors);
+        console.log("errors : ", errors);
+        if (errors.error.httpStatus.match("NON_AUTHORITATIVE_INFORMATION")) {
+          this._matSnackBar.open(errors.error.message, "Oops!", {
+            duration: 4000,
+          });
+          this._router.navigateByUrl(`${environment.LOGIN_URL}`);
+          localStorage.clear();
+        } else {
+          this._matSnackBar.open(errors.error.message, "ok", {
+            duration: 4000,
+          });
+        }
+      }
+    );
+  }
 }

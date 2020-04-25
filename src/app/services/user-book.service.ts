@@ -75,4 +75,19 @@ export class UserBookService {
       headers: new HttpHeaders().set("token", localStorage.token),
     });
   }
+
+  public removeFromCart(bookCode: string): Observable<any> {
+    console.log("#service reached for add remove cart operation");
+    return this._httpService
+      .patchMethod(
+        this.addRemoveFromCartUrl + bookCode,
+        "",
+        this._httpService.httpOptions
+      )
+      .pipe(
+        tap(() => {
+          this.autoRefesh.next();
+        })
+      );
+  }
 }

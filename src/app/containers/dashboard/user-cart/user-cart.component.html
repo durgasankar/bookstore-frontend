@@ -1,7 +1,6 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
         <ng-template matStepLabel>Items in Cart</ng-template>
-
         <mat-list *ngFor="let book of cartList" fxLayout="row">
             <mat-list-item id="image">
                 <img [src]="book.imageUrl" alt="book image" height="50px" width="50px">
@@ -15,13 +14,13 @@
                 ₹. {{book.price}}.00
             </mat-list-item>
             <mat-list-item fxLayout="column">
-                <div><button mat-icon-button (click)="increaseQuantity(book)">
-                        +
+                <div><button mat-icon-button (click)="decreseQuantity(book)">
+                        -
                     </button>
                 </div>
                 <div>{{ book.purchasedQuantity}}</div>
-                <div><button mat-icon-button (click)="decreseQuantity(book)">
-                        --
+                <div><button mat-icon-button (click)="increaseQuantity(book)">
+                        +
                     </button>
                 </div>
             </mat-list-item>
@@ -29,13 +28,13 @@
                 ₹. {{book.purchasedQuantity * book.price}}.00
             </mat-list-item>
             <mat-list-item id="remove-from-cart">
-                <button mat-icon-button color="warn">
+                <button mat-icon-button color="warn" *ngIf="book.addedToCart" (click)="removeFromCart(book)">
                     <mat-icon>cancel</mat-icon>
                 </button>
             </mat-list-item>
             <mat-divider></mat-divider>
         </mat-list>
-        <div align=right style="margin: 20px 40px 0 0">
+        <div align=right style="margin: 20px 40px 0 0; ">
             <button mat-raised-button matStepperNext color="primary">Next</button>
         </div>
     </mat-step>
@@ -46,9 +45,9 @@
                 <mat-label>Address</mat-label>
                 <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
             </mat-form-field>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <button mat-raised-button matStepperPrevious color="primary">Back</button>
+                <button mat-raised-button matStepperNext color="primary">Next</button>
             </div>
         </form>
     </mat-step>
