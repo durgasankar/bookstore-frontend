@@ -9,17 +9,17 @@
             <form>
                 <mat-form-field appearance="outline" id="my-form-field" style="font-size: 12px">
                     <mat-label>Sort by relevance</mat-label>
-                    <mat-select [(ngModel)]="selectedValue" name="food" class="mat-select">
-                        <mat-option>
+                    <mat-select [(value)]="selectedOption" (selectionChange)="onClickSortBooks()" class="mat-select">
+                        <mat-option value="none">
                             Choose Relevance
                         </mat-option>
-                        <mat-option>
+                        <mat-option value="highToLow">
                             Price:High To Low
                         </mat-option>
-                        <mat-option>
+                        <mat-option value="lowToHigh">
                             Price:Low To High
                         </mat-option>
-                        <mat-option>
+                        <mat-option value="newestArrival">
                             Newest Arrival
                         </mat-option>
                     </mat-select>
@@ -31,6 +31,7 @@
     <div class="display-books-container">
         <div class="display-notes" fxLayout="row" *ngFor="let adminBook of adminBooks
              | search: searchBookOnTitle
+             | sortBooks: sortBy
              | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }">
             <app-book [adminBook]="adminBook" [isAdmin]="isAdmin"></app-book>
         </div>

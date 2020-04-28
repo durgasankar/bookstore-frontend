@@ -10,6 +10,8 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class AdminDashboardComponent implements OnInit {
   searchBookOnTitle: any;
+  sortBy: string = "none";
+  selectedOption: any;
   firstName: string;
   length: number;
   isAdmin: boolean;
@@ -26,6 +28,14 @@ export class AdminDashboardComponent implements OnInit {
     // this.dataSource = new MatTableDataSource(this.adminBooks);
   }
   // @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  onClickSortBooks() {
+    if (this.selectedOption === "none") {
+      this.ngOnInit();
+    }
+    this.sortBy = this.selectedOption;
+    console.log(this.sortBy);
+  }
 
   getSearchedBookInfo() {
     this._adminBookOperationService.getSearchedBook().subscribe((message) => {
