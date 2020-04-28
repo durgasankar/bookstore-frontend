@@ -14,11 +14,17 @@ import { Router } from "@angular/router";
 export class UserCartComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  addressFormGroup: FormGroup;
   cartList: UserBook[];
   quantity: number = 1;
   cartSize: number;
   totalAmount: number;
+
+  // countries
+  stateInfo: any[] = [];
+  countryInfo: any[] = [];
+  cityInfo: any[] = [];
+
   constructor(
     private _formBuilder: FormBuilder,
     private _userBookService: UserBookService,
@@ -26,14 +32,39 @@ export class UserCartComponent implements OnInit {
     private _router: Router
   ) {}
 
+  getCountries() {
+    this._userBookService.allCountries().subscribe(
+      (data2) => {
+        this.countryInfo = data2.Countries;
+        console.log("Data:", this.countryInfo);
+      },
+      (err) => console.log(err),
+      () => console.log("complete")
+    );
+  }
+
+  onChangeCountry(countryValue) {
+    console.log("contry value : ", countryValue);
+
+    this.stateInfo = this.countryInfo[countryValue].States;
+    this.cityInfo = this.stateInfo[0].Cities;
+    console.log(this.cityInfo);
+  }
+
+  onChangeState(stateValue) {
+    this.cityInfo = this.stateInfo[stateValue].Cities;
+    console.log(this.cityInfo);
+  }
+
   ngOnInit() {
     this._userBookService.autoRefesh.subscribe(() => {
       this.getCartList();
     });
     this.getCartList();
-    this.secondFormGroup = this._formBuilder.group({
+    this.addressFormGroup = this._formBuilder.group({
       secondCtrl: ["", Validators.required],
     });
+    this.getCountries();
   }
 
   getCartList() {

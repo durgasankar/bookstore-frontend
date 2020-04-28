@@ -32,6 +32,13 @@ export class UserBookService {
     environment.USER_BOOK_API_URL + environment.GET_ALL_CART_BOOKS
   }`;
 
+  ucountriesDataFetchUrl: string =
+    "https://raw.githubusercontent.com/sagarshirbhate/Country-State-City-Database/master/Contries.json";
+
+  allCountries(): Observable<any> {
+    return this._httpService.getMethod(this.ucountriesDataFetchUrl, "");
+  }
+
   public addRemoveFromCart(bookId: number): Observable<any> {
     console.log("#service reached for add remove cart operation");
     return this._httpService
