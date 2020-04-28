@@ -29,8 +29,9 @@
     </div>
     <!-- display all books -->
     <div class="display-books-container">
-        <div class="display-notes" fxLayout="row"
-            *ngFor="let adminBook of adminBooks | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }">
+        <div class="display-notes" fxLayout="row" *ngFor="let adminBook of adminBooks
+             | search: searchBookOnTitle
+             | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }">
             <app-book [adminBook]="adminBook" [isAdmin]="isAdmin"></app-book>
         </div>
     </div>

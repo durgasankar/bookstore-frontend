@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./admin-dashboard.component.scss"],
 })
 export class AdminDashboardComponent implements OnInit {
+  searchBookOnTitle: any;
   firstName: string;
   length: number;
   isAdmin: boolean;
@@ -26,6 +27,13 @@ export class AdminDashboardComponent implements OnInit {
   }
   // @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  getSearchedBookInfo() {
+    this._adminBookOperationService.getSearchedBook().subscribe((message) => {
+      console.log("search data", message.adminBooks);
+      this.searchBookOnTitle = message.adminBooks;
+    });
+  }
+
   ngOnInit() {
     this.firstName = localStorage.firstName;
     this.assignedRole = localStorage.role;
@@ -35,6 +43,7 @@ export class AdminDashboardComponent implements OnInit {
     this._adminBookOperationService.autoRefesh.subscribe(() => {
       this.getAllBooksForAdmin();
     });
+    this.getSearchedBookInfo();
   }
 
   isAdminUser() {

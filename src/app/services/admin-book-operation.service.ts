@@ -12,6 +12,7 @@ import { HttpHeaders } from "@angular/common/http";
 })
 export class AdminBookOperationService {
   private _subject = new Subject<any>();
+  private searchedBook = new Subject<any>();
   constructor(private _httpService: HttpService) {}
 
   public get autoRefesh() {
@@ -60,5 +61,14 @@ export class AdminBookOperationService {
           this.autoRefesh.next();
         })
       );
+  }
+
+  setSearchedBook(bookTitle: string) {
+    console.log("inside set searchedBook service : ", bookTitle);
+    return this.searchedBook.next({ adminBooks: bookTitle });
+  }
+  getSearchedBook(): Observable<any> {
+    console.log("inside get searchedBook service : ");
+    return this.searchedBook.asObservable();
   }
 }

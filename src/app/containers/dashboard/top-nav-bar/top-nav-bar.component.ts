@@ -16,6 +16,7 @@ export class TopNavBarComponent implements OnInit {
   firstName: string;
   isAdmin: boolean;
   @Input() adminRole: string;
+  bookTitle: string;
 
   constructor(
     private _router: Router,
@@ -54,5 +55,10 @@ export class TopNavBarComponent implements OnInit {
     matDialogueReference.afterClosed().subscribe((result) => {
       console.log("The dialog was closed with out update");
     });
+  }
+
+  searchBookOnTitle() {
+    // console.log("book title : ", this.bookTitle);
+    this._adminBookOperationService.setSearchedBook(this.bookTitle);
   }
 }

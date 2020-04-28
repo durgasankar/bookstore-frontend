@@ -55,6 +55,7 @@ import { BookComponent } from "./containers/dashboard/book/book.component";
 import { DashboardComponent } from "./containers/dashboard/dashboard.component";
 import { UserBookService } from "./services/user-book.service";
 import { UserCartComponent } from './containers/dashboard/user-cart/user-cart.component';
+import { SearchPipe } from './pipes/search.pipe';
 const MaterialModule = [
   MatCheckboxModule,
   MatCheckboxModule,
@@ -102,6 +103,7 @@ const MaterialModule = [
     BookComponent,
     DashboardComponent,
     UserCartComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

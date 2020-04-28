@@ -10,7 +10,8 @@
             <button mat-icon-button fxHide.xs="true">
                 <mat-icon>search</mat-icon>
             </button>
-            <input matTooltip="Search" placeholder="Search" class="input" />
+            <input matTooltip="Search" placeholder="Search" class="input" [(ngModel)]="bookTitle"
+                (input)="searchBookOnTitle()" />
         </div>
         <div class="icons" fxFlex="20" fxLayout="row" fxLayoutAlign="space-between center">
             <!-- refresh -->
