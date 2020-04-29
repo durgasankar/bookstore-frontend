@@ -1,3 +1,4 @@
+import { AddressUser } from "./../models/address-user";
 import { Injectable } from "@angular/core";
 import { Subject, Observable } from "rxjs";
 import { HttpService } from "./http.service";
@@ -30,6 +31,10 @@ export class UserBookService {
 
   private getUserBooksOnCartUrl: string = `${
     environment.USER_BOOK_API_URL + environment.GET_ALL_CART_BOOKS
+  }`;
+
+  private addAddressUrl: string = `${
+    environment.USER_API_URL + environment.ADD_ADDRESS_USER
   }`;
 
   ucountriesDataFetchUrl: string =
@@ -96,5 +101,14 @@ export class UserBookService {
           this.autoRefesh.next();
         })
       );
+  }
+
+  public addAddressOfUser(address: AddressUser): Observable<any> {
+    console.log("#service reached for add address operation");
+    return this._httpService.postMethod(
+      this.addAddressUrl,
+      address,
+      this._httpService.httpOptions
+    );
   }
 }

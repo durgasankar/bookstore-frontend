@@ -21,9 +21,9 @@ export class UserCartComponent implements OnInit {
   totalAmount: number;
 
   // countries
-  stateInfo: any[] = [];
+  // stateInfo: any[] = [];
   countryInfo: any[] = [];
-  cityInfo: any[] = [];
+  // cityInfo: any[] = [];
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -31,6 +31,26 @@ export class UserCartComponent implements OnInit {
     private _matSnackBar: MatSnackBar,
     private _router: Router
   ) {}
+
+  ngOnInit() {
+    this._userBookService.autoRefesh.subscribe(() => {
+      this.getCartList();
+    });
+    this.getCartList();
+    this.addressFormGroup = this._formBuilder.group({
+      secondCtrl: ["", Validators.required],
+    });
+    this.getCountries();
+
+    this.addressFormGroup = this._formBuilder.group({
+      street: [""],
+      town: [""],
+      district: ["", [Validators.required]],
+      state: ["", [Validators.required]],
+      country: ["", [Validators.required]],
+      pinCode: ["", [Validators.required]],
+    });
+  }
 
   getCountries() {
     this._userBookService.allCountries().subscribe(
@@ -43,29 +63,32 @@ export class UserCartComponent implements OnInit {
     );
   }
 
-  onChangeCountry(countryValue) {
-    console.log("contry value : ", countryValue);
-
-    this.stateInfo = this.countryInfo[countryValue].States;
-    this.cityInfo = this.stateInfo[0].Cities;
-    console.log(this.cityInfo);
+  SubmitOrderInfo() {
+    console.log("address : ", this.addressFormGroup.value);
+    this._userBookService
+      .addAddressOfUser(this.addressFormGroup.value)
+      .subscribe(
+        (response: any) => {
+          console.log("response : ", response);
+        },
+        (errors: any) => {
+          console.log("errors : ", errors);
+        }
+      );
   }
 
-  onChangeState(stateValue) {
-    this.cityInfo = this.stateInfo[stateValue].Cities;
-    console.log(this.cityInfo);
-  }
+  // onCountryChange() {
+  //   console.log("contry value : ", this.ctry);
 
-  ngOnInit() {
-    this._userBookService.autoRefesh.subscribe(() => {
-      this.getCartList();
-    });
-    this.getCartList();
-    this.addressFormGroup = this._formBuilder.group({
-      secondCtrl: ["", Validators.required],
-    });
-    this.getCountries();
-  }
+  //   this.stateInfo = this.countryInfo[this.ctry].States;
+  //   this.cityInfo = this.stateInfo[0].Cities;
+  //   console.log(this.cityInfo);
+  // }
+
+  // onChangeState(stateValue) {
+  //   this.cityInfo = this.stateInfo[stateValue].Cities;
+  //   console.log(this.cityInfo);
+  // }
 
   getCartList() {
     this._userBookService.getAllUserCartBooks().subscribe(

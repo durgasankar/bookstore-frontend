@@ -45,28 +45,28 @@
                 <mat-card fxLayout="column" fxLayoutAlign="space-around center" align=center
                     style="width: 400px; padding: 10px; background-color: #fff;">
                     <mat-form-field>
-                        <mat-label>Street</mat-label>
-                        <input matInput placeholder="Enter street name">
+                        <mat-label>House No.</mat-label>
+                        <input matInput placeholder="Enter House no." formControlName="street">
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Town</mat-label>
-                        <input matInput placeholder="Enter town name" required>
+                        <input matInput placeholder="Enter town name" formControlName="town">
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>District</mat-label>
-                        <input matInput placeholder="Enter district name" required>
+                        <input matInput placeholder="Enter district name" formControlName="district" required>
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>State</mat-label>
-                        <input matInput placeholder="Enter state name" required>
+                        <input matInput placeholder="Enter state name" formControlName="state" required>
                     </mat-form-field>
 
                     <mat-form-field>
                         <mat-label>Country</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="country">
                             <mat-option *ngFor="let country of countryInfo; let i = index" [value]="i">
                                 {{country.CountryName}}
                             </mat-option>
@@ -75,10 +75,9 @@
 
                     <mat-form-field>
                         <mat-label>Pin code</mat-label>
-                        <input matInput placeholder="Enter pin code" required>
+                        <input matInput type="number" placeholder="Enter pin code" formControlName="pinCode" required>
                     </mat-form-field>
                 </mat-card>
-
 
 
                 <!-- <div class="form-group">
@@ -112,7 +111,8 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="space-evenly center">
                 <button mat-raised-button matStepperPrevious color="primary">Back</button>
-                <button mat-raised-button matStepperNext color="primary">Next</button>
+                <button mat-raised-button matStepperNext color="primary"
+                    [disabled]="addressFormGroup.invalid">Next</button>
             </div>
         </form>
     </mat-step>
@@ -121,7 +121,7 @@
         <p>You are now done.</p>
         <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="SubmitOrderInfo()">Place Your Order</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>
