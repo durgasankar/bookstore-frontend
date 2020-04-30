@@ -23,6 +23,14 @@ export class UserCartComponent implements OnInit {
   // countries
   // stateInfo: any[] = [];
   countryInfo: any[] = [];
+  displayedColumns: string[] = [
+    "bookCode",
+    "title",
+    "author",
+    "price",
+    "quantity",
+    "total",
+  ];
   // cityInfo: any[] = [];
 
   constructor(
