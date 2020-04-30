@@ -129,7 +129,9 @@
             <ng-template matStepLabel>Confirm your details</ng-template>
             <!-- cart info -->
             <div class="mat-title" style=" margin-bottom: 2px;">Items</div>
-            <table mat-table [dataSource]="cartList" class="mat-elevation-z8">
+            <table mat-table
+                [dataSource]="cartList | paginate: { itemsPerPage: 3, currentPage: displayPagePaginator, id: 'first' }"
+                class="mat-elevation-z8">
                 <!-- Position bookCode -->
                 <ng-container matColumnDef="bookCode">
                     <th mat-header-cell *matHeaderCellDef> Book Code </th>
@@ -172,8 +174,13 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
             </table>
+            <div class="paginator" *ngIf="cartSize > 3">
+                <pagination-controls (pageChange)="displayPagePaginator = $event" id="first" align=center>
+                </pagination-controls>
+            </div>
             <!-- Address info -->
-            <div class="mat-title">Shipping Address</div>
+            <div class="mat-title" id="shipping-address" [ngStyle]="{'margin-top': cartSize > 3 ? '-40px' : '10px'}">
+                Shipping Address</div>
             <div class="mat-body-2">
                 {{ firstName }}
             </div>

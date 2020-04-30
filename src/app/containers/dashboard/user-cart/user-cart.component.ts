@@ -28,6 +28,7 @@ export class UserCartComponent implements OnInit {
   // cityInfo: any[] = [];
   // confirm order display table
   page: number = 1;
+  displayPagePaginator: number = 1;
   displayedColumns: string[] = [
     "bookCode",
     "title",
