@@ -8,3 +8,11 @@ table {
 .example-first-header-row th {
   border-bottom: none;
 }
+#home {
+  transform: scale(1.5);
+}
+mat-card {
+  width: 400px;
+  padding: 10px;
+  background-color: #fff;
+}

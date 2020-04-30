@@ -6,6 +6,7 @@ import { UserBook } from "src/app/models/user-books";
 import { MatSnackBar } from "@angular/material";
 import { environment } from "src/environments/environment";
 import { Router } from "@angular/router";
+import { OrderSucessPageComponent } from "../order-sucess-page/order-sucess-page.component";
 
 @Component({
   selector: "app-user-cart",
@@ -26,7 +27,7 @@ export class UserCartComponent implements OnInit {
   countryInfo: any[] = [];
   // cityInfo: any[] = [];
   // confirm order display table
-  slNo: number = 1;
+  page: number = 1;
   displayedColumns: string[] = [
     "bookCode",
     "title",
@@ -56,7 +57,6 @@ export class UserCartComponent implements OnInit {
       secondCtrl: ["", Validators.required],
     });
     this.getCountries();
-
     this.addressFormGroup = this._formBuilder.group({
       street: [""],
       town: [""],
@@ -89,6 +89,9 @@ export class UserCartComponent implements OnInit {
         },
         (errors: any) => {
           console.log("errors : ", errors);
+        },
+        () => {
+          this._router.navigateByUrl("dashboard/success");
         }
       );
   }

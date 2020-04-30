@@ -1,7 +1,8 @@
 <mat-horizontal-stepper linear #stepper>
     <mat-step>
         <ng-template matStepLabel>Items in Cart</ng-template>
-        <mat-list *ngFor="let book of cartList" fxLayout="row">
+        <mat-list *ngFor="let book of cartList | paginate: { itemsPerPage: 5, currentPage: page, id: 'first' }"
+            fxLayout="row">
             <mat-list-item id="image">
                 <img [src]="book.imageUrl" alt="book image" height="50px" width="50px">
             </mat-list-item>
@@ -34,40 +35,49 @@
             </mat-list-item>
             <mat-divider></mat-divider>
         </mat-list>
-        <div align=right style="margin: 20px 40px 0 0; ">
-            <button mat-raised-button matStepperNext color="primary">Next</button>
+        <div class="paginator" *ngIf="cartSize >= 5">
+            <pagination-controls (pageChange)="page = $event" id="first" align=center>
+            </pagination-controls>
         </div>
+        <div align=right>
+            <button mat-raised-button matStepperNext color="primary" *ngIf="cartSize >= 1;else emptyCart">Next</button>
+        </div>
+        <ng-template #emptyCart>
+            <div class="empty-cart" fxLayout="column" fxLayoutAlign="center center">
+                <div class="mat-title">Oops! Empty Cart...</div>
+                <div>
+                    <button mat-button id="home" matTooltip="Return to home" color="primary" routerLink="/dashboard">
+                        <mat-icon>home</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </ng-template>
     </mat-step>
     <mat-step [stepControl]="addressFormGroup">
         <form [formGroup]="addressFormGroup">
             <ng-template matStepLabel>Fill out your address</ng-template>
             <div class="address" align=center>
-                <mat-card fxLayout="column" fxLayoutAlign="space-around center" align=center
-                    style="width: 400px; padding: 10px; background-color: #fff;">
+                <mat-card fxLayout="column" fxLayoutAlign="space-around center" align=center>
                     <mat-form-field>
                         <mat-label>House No.</mat-label>
                         <input matInput placeholder="Enter House no." formControlName="street">
                     </mat-form-field>
-
                     <mat-form-field>
                         <mat-label>Town</mat-label>
                         <input matInput placeholder="Enter town name" formControlName="town">
                     </mat-form-field>
-
                     <mat-form-field>
                         <mat-label>District</mat-label>
                         <input matInput placeholder="Enter district name" formControlName="district" required>
                         <mat-error *ngIf="addressFormGroup.get('district').hasError('required')">Mention district name
                         </mat-error>
                     </mat-form-field>
-
                     <mat-form-field>
                         <mat-label>State</mat-label>
                         <input matInput placeholder="Enter state name" formControlName="state" required>
                         <mat-error *ngIf="addressFormGroup.get('state').hasError('required')">Mention state name
                         </mat-error>
                     </mat-form-field>
-
                     <mat-form-field>
                         <mat-label>Country</mat-label>
                         <mat-select formControlName="country">
@@ -77,7 +87,6 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-
                     <mat-form-field>
                         <mat-label>Pin code</mat-label>
                         <input matInput type="number" placeholder="Enter pin code" formControlName="pinCode" required>
@@ -92,7 +101,6 @@
                         </option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label>Select State</label>
                     <select class="form-control" (change)="onChangeState($event.target.value)">
@@ -101,7 +109,6 @@
                         </option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label>Select City</label>
                     <select class="form-control">
@@ -110,78 +117,80 @@
                     </select>
                 </div> -->
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                <button mat-raised-button matStepperPrevious color="primary">Back</button>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" style="padding-top: 1em;">
+                <button mat-raised-button matStepperPrevious color="warn">Back</button>
                 <button mat-raised-button matStepperNext color="primary" [disabled]="addressFormGroup.invalid"
                     (click)="getAddressDataFromGroup()">Next</button>
             </div>
         </form>
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Confirm your details</ng-template>
-        <!-- cart info -->
-        <div class="mat-title" style=" margin-bottom: 2px;">Items</div>
-        <table mat-table [dataSource]="cartList" class="mat-elevation-z8">
-            <!-- Position bookCode -->
-            <ng-container matColumnDef="bookCode">
-                <th mat-header-cell *matHeaderCellDef> Book Code </th>
-                <td mat-cell *matCellDef="let element"> {{ element.bookCode }} </td>
-            </ng-container>
-            <!-- Name title -->
-            <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef> Title </th>
-                <td mat-cell *matCellDef="let element" align="left"> {{ element.title }} </td>
-            </ng-container>
-            <!-- Name author -->
-            <ng-container matColumnDef="author">
-                <th mat-header-cell *matHeaderCellDef> Author </th>
-                <td mat-cell *matCellDef="let element"> {{ element.author }} </td>
-            </ng-container>
-            <!-- Name price -->
-            <ng-container matColumnDef="price">
-                <th mat-header-cell *matHeaderCellDef> Price </th>
-                <td mat-cell *matCellDef="let element">{{ element.price | currency:'INR'}}</td>
-            </ng-container>
-            <!-- Name quantity -->
-            <ng-container matColumnDef="quantity">
-                <th mat-header-cell *matHeaderCellDef> Quantity </th>
-                <td mat-cell *matCellDef="let element" align="center"> {{ element.purchasedQuantity }} </td>
-            </ng-container>
-            <!-- Name total -->
-            <ng-container matColumnDef="total">
-                <th mat-header-cell *matHeaderCellDef> Total </th>
-                <td mat-cell *matCellDef="let element">{{element.purchasedQuantity * element.price | currency:'INR'}}
-                </td>
-            </ng-container>
-            <!-- Disclaimer disclaimer -->
-            <ng-container matColumnDef="disclaimer">
-                <td mat-footer-cell *matFooterCellDef colspan="2">
-                    Please note that the cost of items displayed are completely and totally made up.
-                </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
-        </table>
-
-        <!-- Address info -->
-        <div class="mat-title">Shipping Address</div>
-        <div class="mat-body-2">
-            {{ firstName }}
-        </div>
-        <div class="local-info" class="mat-typography">
-            House No.: {{ address.street }}, Town: {{ address.town}}
-        </div>
-        <div class="state-info" class="mat-typography">
-            District: {{ address.district }}, State: {{ address.state }}
-        </div>
-        <div class="pincode" class="mat-typography">
-            Country: {{ address.country }}, Pin: {{ address.pinCode }}
-        </div>
-
-        <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 10px;">
-            <button mat-raised-button matStepperPrevious color="warn">Back</button>
-            <button mat-raised-button (click)="SubmitOrderInfo()" color="primary">Place Your Order</button>
+        <div class="confirm-page">
+            <ng-template matStepLabel>Confirm your details</ng-template>
+            <!-- cart info -->
+            <div class="mat-title" style=" margin-bottom: 2px;">Items</div>
+            <table mat-table [dataSource]="cartList" class="mat-elevation-z8">
+                <!-- Position bookCode -->
+                <ng-container matColumnDef="bookCode">
+                    <th mat-header-cell *matHeaderCellDef> Book Code </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.bookCode }} </td>
+                </ng-container>
+                <!-- Name title -->
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef> Title </th>
+                    <td mat-cell *matCellDef="let element" align="left"> {{ element.title }} </td>
+                </ng-container>
+                <!-- Name author -->
+                <ng-container matColumnDef="author">
+                    <th mat-header-cell *matHeaderCellDef> Author </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.author }} </td>
+                </ng-container>
+                <!-- Name price -->
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef> Price </th>
+                    <td mat-cell *matCellDef="let element">{{ element.price | currency:'INR'}}</td>
+                </ng-container>
+                <!-- Name quantity -->
+                <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                    <td mat-cell *matCellDef="let element" align="center"> {{ element.purchasedQuantity }} </td>
+                </ng-container>
+                <!-- Name total -->
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef> Total </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.purchasedQuantity * element.price | currency:'INR'}}
+                    </td>
+                </ng-container>
+                <!-- Disclaimer disclaimer -->
+                <ng-container matColumnDef="disclaimer">
+                    <td mat-footer-cell *matFooterCellDef colspan="2">
+                        Please note that the cost of items displayed are completely and totally made up.
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
+            </table>
+            <!-- Address info -->
+            <div class="mat-title">Shipping Address</div>
+            <div class="mat-body-2">
+                {{ firstName }}
+            </div>
+            <div class="local-info" class="mat-typography">
+                House No.: {{ address.street }}, Town: {{ address.town}}
+            </div>
+            <div class="state-info" class="mat-typography">
+                District: {{ address.district }}, State: {{ address.state }}
+            </div>
+            <div class="pincode" class="mat-typography">
+                Country: {{ address.country }}, Pin: {{ address.pinCode }}
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 10px;">
+                <button mat-raised-button matStepperPrevious color="warn">Back</button>
+                <button *ngIf="cartSize >=1" mat-raised-button (click)="SubmitOrderInfo()" color="primary">Place Your
+                    Order</button>
+            </div>
         </div>
     </mat-step>
 </mat-horizontal-stepper>
