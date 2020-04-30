@@ -1,3 +1,4 @@
+import { AddressUser } from "./../../../models/address-user";
 import { UserBookService } from "./../../../services/user-book.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
@@ -23,6 +24,9 @@ export class UserCartComponent implements OnInit {
   // countries
   // stateInfo: any[] = [];
   countryInfo: any[] = [];
+  // cityInfo: any[] = [];
+  // confirm order display table
+  slNo: number = 1;
   displayedColumns: string[] = [
     "bookCode",
     "title",
@@ -31,14 +35,17 @@ export class UserCartComponent implements OnInit {
     "quantity",
     "total",
   ];
-  // cityInfo: any[] = [];
-
+  // address info
+  address: AddressUser;
+  firstName: string;
   constructor(
     private _formBuilder: FormBuilder,
     private _userBookService: UserBookService,
     private _matSnackBar: MatSnackBar,
     private _router: Router
-  ) {}
+  ) {
+    this.firstName = localStorage.firstName;
+  }
 
   ngOnInit() {
     this._userBookService.autoRefesh.subscribe(() => {
@@ -58,6 +65,7 @@ export class UserCartComponent implements OnInit {
       country: ["", [Validators.required]],
       pinCode: ["", [Validators.required]],
     });
+    this.getAddressDataFromGroup();
   }
 
   getCountries() {
@@ -170,5 +178,10 @@ export class UserCartComponent implements OnInit {
         }
       }
     );
+  }
+
+  getAddressDataFromGroup() {
+    this.address = this.addressFormGroup.value;
+    console.log("address value", this.address);
   }
 }

@@ -1,3 +1,4 @@
+import { OrderSucessPageComponent } from "./containers/dashboard/order-sucess-page/order-sucess-page.component";
 import { UserCartComponent } from "./containers/dashboard/user-cart/user-cart.component";
 import { ActivateAccountComponent } from "./containers/user-authentication/activate-account/activate-account.component";
 import { RegistrationComponent } from "./containers/user-authentication/registration/registration.component";
@@ -21,6 +22,7 @@ const routes: Routes = [
     children: [
       { path: "", component: AdminDashboardComponent },
       { path: "cart", component: UserCartComponent },
+      { path: "success", component: OrderSucessPageComponent },
     ],
   },
 

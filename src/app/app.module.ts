@@ -54,9 +54,10 @@ import { AdminBookOperationService } from "./services/admin-book-operation.servi
 import { BookComponent } from "./containers/dashboard/book/book.component";
 import { DashboardComponent } from "./containers/dashboard/dashboard.component";
 import { UserBookService } from "./services/user-book.service";
-import { UserCartComponent } from './containers/dashboard/user-cart/user-cart.component';
-import { SearchPipe } from './pipes/search.pipe';
-import { SortBooksPipe } from './pipes/sort-books.pipe';
+import { UserCartComponent } from "./containers/dashboard/user-cart/user-cart.component";
+import { SearchPipe } from "./pipes/search.pipe";
+import { SortBooksPipe } from "./pipes/sort-books.pipe";
+import { OrderSucessPageComponent } from './containers/dashboard/order-sucess-page/order-sucess-page.component';
 const MaterialModule = [
   MatCheckboxModule,
   MatCheckboxModule,
@@ -106,6 +107,7 @@ const MaterialModule = [
     UserCartComponent,
     SearchPipe,
     SortBooksPipe,
+    OrderSucessPageComponent,
   ],
   imports: [
     BrowserModule,
