@@ -80,6 +80,9 @@ export class UserCartComponent implements OnInit {
     );
   }
 
+  // orderBooksList: OrderBook[];
+  // order: OrderBook = new OrderBook();
+
   SubmitOrderInfo() {
     console.log("address : ", this.addressFormGroup.value);
     this._userBookService
@@ -95,6 +98,19 @@ export class UserCartComponent implements OnInit {
           this._router.navigateByUrl("dashboard/success");
         }
       );
+
+    // this._userBookService.placeOrder(this.cartList).subscribe(
+    //   (response: any) => {
+    //     console.log("response place order : ", response);
+    //   },
+    //   (errors: any) => {
+    //     console.log("errors place order : ", errors);
+    //   },
+    //   () => {
+    //     this._router.navigateByUrl("dashboard/success");
+    //   }
+    // );
+    console.log("cart list info : ", this.cartList);
   }
 
   // onCountryChange() {
@@ -116,10 +132,10 @@ export class UserCartComponent implements OnInit {
         console.log("response cart : ", response);
         this.cartList = response.list;
         this.cartSize = this.cartList.length;
+        this._userBookService.setCartSize(this.cartSize);
         console.log("cart list : ", this.cartList);
         const price = this.cartList.map((fetchedBook) => fetchedBook.price);
         const total = price.reduce((a, b) => a + b, 0);
-        // const tota = quantity.
         this.totalAmount = total;
       },
       (errors) => {

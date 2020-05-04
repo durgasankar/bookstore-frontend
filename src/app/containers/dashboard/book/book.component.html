@@ -6,7 +6,7 @@
         <mat-card-content>
             <div class="mat-title">{{ adminBook.title }}</div>
             <mat-card-subtitle>by {{ adminBook.author }}</mat-card-subtitle>
-            <div class="mat-subheading-1">{{ adminBook.price }}</div>
+            <div class="mat-subheading-1">{{ adminBook.price | currency:'INR' }}</div>
             <mat-card-subtitle>Available quantity: {{ adminBook.availableQuantity }}</mat-card-subtitle>
         </mat-card-content>
         <mat-card-actions div fxLayout="row" fxLayoutGap="1%" *ngIf="!isAdmin; else admin">

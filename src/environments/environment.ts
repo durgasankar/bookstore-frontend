@@ -18,6 +18,7 @@ export const environment = {
   ADD_REMOVE_FROM_CART: "/cart?id=",
   ADD_REMOVE_FROM_WATCHLIST: "/watchlist?id=",
   GET_ALL_CART_BOOKS: "/cart",
+  PLACE_ORDER: "/checkout",
 
   // address
   ADD_ADDRESS_USER: "/address/add",

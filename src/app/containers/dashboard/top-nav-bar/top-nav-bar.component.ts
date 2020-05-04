@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { MatSnackBar, MatDialog } from "@angular/material";
 import { AdminBookOperationService } from "src/app/services/admin-book-operation.service";
 import { AddBookComponent } from "../admin-dashboard/add-book/add-book.component";
+import { UserBookService } from "src/app/services/user-book.service";
 
 @Component({
   selector: "app-top-nav-bar",
@@ -15,6 +16,7 @@ export class TopNavBarComponent implements OnInit {
   profilePicUser: string = "./assets/durgasankar.jpg";
   firstName: string;
   isAdmin: boolean;
+  cartSize: any;
   @Input() adminRole: string;
   bookTitle: string;
 
@@ -22,12 +24,19 @@ export class TopNavBarComponent implements OnInit {
     private _router: Router,
     private _matSnackBar: MatSnackBar,
     private dialog: MatDialog,
-    private _adminBookOperationService: AdminBookOperationService
-  ) {}
+    private _adminBookOperationService: AdminBookOperationService,
+    private _userBookService: UserBookService
+  ) {
+    this._userBookService.autoRefesh.subscribe(() => {
+      this.getCartList();
+    });
+    this.getCartList();
+  }
 
   ngOnInit() {
     this.firstName = localStorage.firstName;
     this.isAdmin = this.isAdminUser();
+    console.log("cart size : printing : ", this.cartSize);
   }
   isAdminUser() {
     if (localStorage.role.includes("admin")) return true;
@@ -60,5 +69,16 @@ export class TopNavBarComponent implements OnInit {
   searchBookOnTitle() {
     // console.log("book title : ", this.bookTitle);
     this._adminBookOperationService.setSearchedBook(this.bookTitle);
+  }
+
+  getCartList() {
+    this._userBookService.getAllUserCartBooks().subscribe(
+      (response) => {
+        this.cartSize = response.list.length;
+      },
+      (errors) => {
+        console.log(errors);
+      }
+    );
   }
 }

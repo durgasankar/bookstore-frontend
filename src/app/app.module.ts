@@ -38,6 +38,7 @@ import {
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
+  MatBadgeModule,
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RegistrationComponent } from "./containers/user-authentication/registration/registration.component";
@@ -57,11 +58,12 @@ import { UserBookService } from "./services/user-book.service";
 import { UserCartComponent } from "./containers/dashboard/user-cart/user-cart.component";
 import { SearchPipe } from "./pipes/search.pipe";
 import { SortBooksPipe } from "./pipes/sort-books.pipe";
-import { OrderSucessPageComponent } from './containers/dashboard/order-sucess-page/order-sucess-page.component';
+import { OrderSucessPageComponent } from "./containers/dashboard/order-sucess-page/order-sucess-page.component";
 const MaterialModule = [
   MatCheckboxModule,
   MatCheckboxModule,
   MatButtonModule,
+  MatBadgeModule,
   MatInputModule,
   MatAutocompleteModule,
   MatDatepickerModule,

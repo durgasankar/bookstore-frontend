@@ -5,12 +5,14 @@ import { HttpService } from "./http.service";
 import { environment } from "src/environments/environment";
 import { tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
+import { UserBook } from "../models/user-books";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserBookService {
   private _subject = new Subject<any>();
+  private _cartSize = new Subject<any>();
   constructor(private _httpService: HttpService) {}
 
   public get autoRefesh() {
@@ -35,6 +37,10 @@ export class UserBookService {
 
   private addAddressUrl: string = `${
     environment.USER_API_URL + environment.ADD_ADDRESS_USER
+  }`;
+
+  private placeOrderUrl: string = `${
+    environment.USER_BOOK_API_URL + environment.PLACE_ORDER
   }`;
 
   ucountriesDataFetchUrl: string =
@@ -110,5 +116,22 @@ export class UserBookService {
       address,
       this._httpService.httpOptions
     );
+  }
+
+  public placeOrder(orderList: UserBook[]): Observable<any> {
+    console.log("#service reached for placing order");
+    // alert("Your order will be processed soon.");
+    return this._httpService.postMethod(
+      this.placeOrderUrl,
+      orderList,
+      this._httpService.httpOptions
+    );
+  }
+
+  setCartSize(message: number) {
+    this._cartSize.next({ customer: message });
+  }
+  getCartSize(): Observable<number> {
+    return this._cartSize.asObservable();
   }
 }
