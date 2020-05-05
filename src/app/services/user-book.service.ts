@@ -12,7 +12,6 @@ import { UserBook } from "../models/user-books";
 })
 export class UserBookService {
   private _subject = new Subject<any>();
-  private _cartSize = new Subject<any>();
   constructor(private _httpService: HttpService) {}
 
   public get autoRefesh() {
@@ -126,12 +125,5 @@ export class UserBookService {
       orderList,
       this._httpService.httpOptions
     );
-  }
-
-  setCartSize(message: number) {
-    this._cartSize.next({ customer: message });
-  }
-  getCartSize(): Observable<number> {
-    return this._cartSize.asObservable();
   }
 }

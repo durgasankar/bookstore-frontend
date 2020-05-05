@@ -5,6 +5,7 @@ import { MatSnackBar, MatDialog } from "@angular/material";
 import { AdminBookOperationService } from "src/app/services/admin-book-operation.service";
 import { AddBookComponent } from "../admin-dashboard/add-book/add-book.component";
 import { UserBookService } from "src/app/services/user-book.service";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-top-nav-bar",
@@ -26,16 +27,15 @@ export class TopNavBarComponent implements OnInit {
     private dialog: MatDialog,
     private _adminBookOperationService: AdminBookOperationService,
     private _userBookService: UserBookService
-  ) {
-    this._userBookService.autoRefesh.subscribe(() => {
-      this.getCartList();
-    });
-    this.getCartList();
-  }
+  ) {}
 
   ngOnInit() {
     this.firstName = localStorage.firstName;
     this.isAdmin = this.isAdminUser();
+    this._userBookService.autoRefesh.subscribe(() => {
+      this.getCartList();
+    });
+    this.getCartList();
     console.log("cart size : printing : ", this.cartSize);
   }
   isAdminUser() {
@@ -75,6 +75,7 @@ export class TopNavBarComponent implements OnInit {
     this._userBookService.getAllUserCartBooks().subscribe(
       (response) => {
         this.cartSize = response.list.length;
+        console.log("cart length in symbol", this.cartSize);
       },
       (errors) => {
         console.log(errors);

@@ -132,7 +132,6 @@ export class UserCartComponent implements OnInit {
         console.log("response cart : ", response);
         this.cartList = response.list;
         this.cartSize = this.cartList.length;
-        this._userBookService.setCartSize(this.cartSize);
         console.log("cart list : ", this.cartList);
         const price = this.cartList.map((fetchedBook) => fetchedBook.price);
         const total = price.reduce((a, b) => a + b, 0);
