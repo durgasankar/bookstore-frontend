@@ -1,0 +1,22 @@
+.reg-container {
+    background-color: yellow;
+    margin: 0 10rem;
+    display: flex;
+}
+
+.reg-left {
+    flex: 1;
+}
+
+.reg-left img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.reg-right {
+    flex: 1;
+    padding: 3rem;
+    flex-direction: column;
+}
