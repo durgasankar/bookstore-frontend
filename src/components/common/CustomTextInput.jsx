@@ -11,7 +11,7 @@ const CustomTextInput = ({
     return (
         <TextField
             fullWidth
-            margin="normal"
+            margin="dense"
             label={ label }
             name={ name }
             value={ value }

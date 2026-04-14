@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import '../assets/css/registration.css';
-import bookstore_logo from '../assets/images/bookstore-logo.jpg';
+import bookstore_logo from '../assets/images/bookstore-logo.png';
 import Box from '@mui/material/Box';
 import CustomTextInput from '../components/common/CustomTextInput';
 import CustomRadioButton from '../components/common/CustomRadioButton';
-import Button from '@mui/material/Button';
+import CustomButton from '../components/common/CustomButton';
 
 const Registration = () => {
     const [signupForm, setSignupForm] = useState({
@@ -13,6 +13,8 @@ const Registration = () => {
         email: '',
         mobileNumber: '',
         gender: '',
+        password: '',
+        confirmPassword: ''
     })
 
     const handleSubmit = event => {
@@ -44,20 +46,22 @@ const Registration = () => {
                         autoComplete='off'
                         onSubmit={ handleSubmit }
                     >
-                        <CustomTextInput
-                            value={ signupForm.firstName }
-                            name={ 'firstName' }
-                            label='First Name'
-                            onChange={ handleChange }
-                            required
-                        />
-                        <CustomTextInput
-                            value={ signupForm.lastName }
-                            name={ 'lastName' }
-                            label='Last Name'
-                            onChange={ handleChange }
-                            required
-                        />
+                        <div className='name' id='single-row'>
+                            <CustomTextInput
+                                value={ signupForm.firstName }
+                                name={ 'firstName' }
+                                label='First Name'
+                                onChange={ handleChange }
+                                required
+                            />
+                            <CustomTextInput
+                                value={ signupForm.lastName }
+                                name={ 'lastName' }
+                                label='Last Name'
+                                onChange={ handleChange }
+                                required
+                            />
+                        </div>
                         <CustomTextInput
                             value={ signupForm.email }
                             name={ 'email' }
@@ -84,14 +88,31 @@ const Registration = () => {
                                 { label: "Other", value: "other" }
                             ] }
                         />
+                        <div className='password-confirm' id='single-row'>
+                            <CustomTextInput
+                                value={ signupForm.password }
+                                name={ 'password' }
+                                label='Password'
+                                onChange={ handleChange }
+                                required
+                            />
+                            <CustomTextInput
+                                value={ signupForm.confirmPassword }
+                                name={ 'confirmPassword' }
+                                label='Confirm Password'
+                                onChange={ handleChange }
+                                required
+                                type={ 'password' }
+                            />
+                        </div>
 
-                        <Button
+                        <CustomButton
                             fullWidth
                             type="submit"
                             variant="contained"
                         >
                             Submit
-                        </Button>
+                        </CustomButton>
 
                     </Box>
                 </div>
