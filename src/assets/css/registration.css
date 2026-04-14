@@ -4,14 +4,19 @@
 }
 
 .reg-container {
-    margin: 0 10rem;
     display: flex;
+    max-width: 80vw;
+    margin: auto;
+    flex-wrap: wrap;
 }
 
 .reg-left {
     flex: 1;
     overflow: hidden;
     border-radius: 0 8px 8px 0;
+    min-height: 240px;
+    min-width: 240px;
+
 }
 
 .reg-left img {
@@ -54,6 +59,6 @@
     text-decoration: none;
 }
 
-.reg-right-footer a:hover {
+.signin-link:hover {
     text-decoration: underline;
 }

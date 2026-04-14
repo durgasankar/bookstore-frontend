@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../assets/css/registration.css';
 import bookstore_logo from '../assets/images/bookstore-logo.png';
 import Box from '@mui/material/Box';
+import { Link } from "react-router-dom";
 import CustomTextInput from '../components/common/CustomTextInput';
 import CustomRadioButton from '../components/common/CustomRadioButton';
 import CustomButton from '../components/common/CustomButton';
@@ -117,7 +118,10 @@ const Registration = () => {
                     </Box>
                 </div>
                 <div className="reg-right-footer">
-                    Already have an account? <a href="#">Sign in</a>
+                    Already have an account?
+                    <Link to="/login">
+                        <span className='signin-link'>&nbsp;Sign in</span>
+                    </Link>
                 </div>
             </div>
         </div>
