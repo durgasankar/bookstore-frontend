@@ -24,10 +24,10 @@ const CustomButton = ({
                 textTransform: "none",
                 fontSize: "16px",
                 fontWeight: 600,
-                borderRadius: "8px",
-                backgroundColor: "#666666",
+                borderRadius: "4px",
+                backgroundColor: "#1976D2",
                 "&:hover": {
-                    backgroundColor: "#444444",
+                    backgroundColor: "#1565C0",
                 },
             } }
         >
