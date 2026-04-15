@@ -51,6 +51,7 @@ const Login = () => {
         }
         try {
             const response = await loginUserApi(payload);
+            localStorage.setItem('token', response.token)
             successToast(response?.message);
             navigate('/dashboard');
         } catch (error) {

@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./components/NotFound";
+import PublicRoute from "./routes/PublicRoute";
 
 function App() {
   return (
@@ -13,8 +14,15 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={ <Homepage /> } />
-        <Route path='/signup' element={ <Registration /> } />
-        <Route path='/signin' element={ <Login /> } />
+        <Route path="/signup" element={ <Registration /> } />
+        <Route
+          path="/signin"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
         <Route
           path='/dashboard'
           element={
