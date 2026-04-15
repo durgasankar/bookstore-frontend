@@ -56,12 +56,10 @@ const Registration = () => {
         }
         try {
             const response = await registerUser(payload);
-            successToast("Registation succesful")
-            console.log(response);
+            successToast(response?.message);
         } catch (error) {
             errorToast(error?.message || "Something went wrong");
         }
-        console.log('submit', signupForm);
     }
 
     const handleChange = event => {
