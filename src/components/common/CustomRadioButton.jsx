@@ -16,7 +16,7 @@ const CustomRadioButton = ({
 
 }) => {
     return (
-        <FormControl margin="dense" error={ error } helperText>
+        <FormControl margin="dense" error={ error }>
             <FormLabel>{ label }</FormLabel>
             <RadioGroup
                 row

@@ -7,8 +7,12 @@ import CustomTextInput from '../components/common/CustomTextInput';
 import CustomRadioButton from '../components/common/CustomRadioButton';
 import CustomButton from '../components/common/CustomButton';
 import { hasPasswordMatched, isValidEmail } from '../utils/Validation';
+import { registerUser } from '../services/authService';
+import useToast from '../hooks/useToast';
 
 const Registration = () => {
+    const { successToast, errorToast } = useToast();
+
     const [signupForm, setSignupForm] = useState({
         firstName: '',
         lastName: '',
@@ -38,11 +42,24 @@ const Registration = () => {
         return Object.keys(newErrors).length === 0;
     }
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
         const isValid = formValidator();
-        if (!isValid) {
-            return;
+        if (!isValid) return;
+        const payload = {
+            firstName: signupForm.firstName,
+            lastName: signupForm.lastName,
+            email: signupForm.email,
+            mobileNumber: signupForm.mobileNumber,
+            gender: signupForm.gender,
+            password: signupForm.password
+        }
+        try {
+            const response = await registerUser(payload);
+            successToast("Registation succesful")
+            console.log(response);
+        } catch (error) {
+            errorToast(error?.message || "Something went wrong");
         }
         console.log('submit', signupForm);
     }
