@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import CustomTextInput from '../components/common/CustomTextInput';
 import CustomRadioButton from '../components/common/CustomRadioButton';
 import CustomButton from '../components/common/CustomButton';
+import { hasPasswordMatched, isValidEmail } from '../utils/Validation';
 
 const Registration = () => {
     const [signupForm, setSignupForm] = useState({
@@ -16,21 +17,48 @@ const Registration = () => {
         gender: '',
         password: '',
         confirmPassword: ''
-    })
+    });
+    const [errors, setErrors] = useState({});
+
+
+    const formValidator = () => {
+        const newErrors = {};
+        Object.keys(signupForm).forEach(field => {
+            if (!signupForm[field]) {
+                newErrors[field] = `Field is required.`
+            }
+        })
+        if (signupForm.email && !isValidEmail(signupForm.email)) {
+            newErrors['email'] = 'Enter a valid email address';
+        }
+        if (!hasPasswordMatched(signupForm.password, signupForm.confirmPassword)) {
+            newErrors['confirmPassword'] = 'Passwords do not match';
+        }
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }
 
     const handleSubmit = event => {
         event.preventDefault();
+        const isValid = formValidator();
+        if (!isValid) {
+            return;
+        }
         console.log('submit', signupForm);
     }
+
     const handleChange = event => {
         const { name, value } = event.target;
         setSignupForm(prevForm => ({
             ...prevForm,
             [name]: value
         }));
-        console.log(name, value);
-
+        setErrors(prevErrors => ({
+            ...prevErrors,
+            [name]: ""
+        }))
     }
+
     return (
         <div className='reg-container'>
             <div className="reg-left">
@@ -54,6 +82,8 @@ const Registration = () => {
                                 label='First Name'
                                 onChange={ handleChange }
                                 required
+                                error={ !!errors.firstName }
+                                helperText={ errors.firstName }
                             />
                             <CustomTextInput
                                 value={ signupForm.lastName }
@@ -61,6 +91,8 @@ const Registration = () => {
                                 label='Last Name'
                                 onChange={ handleChange }
                                 required
+                                error={ !!errors.lastName }
+                                helperText={ errors.lastName }
                             />
                         </div>
                         <CustomTextInput
@@ -70,6 +102,8 @@ const Registration = () => {
                             onChange={ handleChange }
                             required
                             type='email'
+                            error={ !!errors.email }
+                            helperText={ errors.email }
                         />
                         <CustomTextInput
                             value={ signupForm.mobileNumber }
@@ -77,12 +111,16 @@ const Registration = () => {
                             label='Mobile Number'
                             onChange={ handleChange }
                             required
+                            error={ !!errors.mobileNumber }
+                            helperText={ errors.mobileNumber }
                         />
                         <CustomRadioButton
                             label='Gender'
                             name={ 'gender' }
                             value={ signupForm.gender }
                             onChange={ handleChange }
+                            error={ !!errors.gender }
+                            helperText={ errors.gender }
                             options={ [
                                 { label: "Male", value: "male" },
                                 { label: "Female", value: "female" },
@@ -96,6 +134,8 @@ const Registration = () => {
                                 label='Password'
                                 onChange={ handleChange }
                                 required
+                                error={ !!errors.password }
+                                helperText={ errors.password }
                             />
                             <CustomTextInput
                                 value={ signupForm.confirmPassword }
@@ -104,17 +144,19 @@ const Registration = () => {
                                 onChange={ handleChange }
                                 required
                                 type={ 'password' }
+                                error={ !!errors.confirmPassword }
+                                helperText={ errors.confirmPassword }
                             />
                         </div>
-
-                        <CustomButton
-                            fullWidth
-                            type="submit"
-                            variant="contained"
-                        >
-                            Submit
-                        </CustomButton>
-
+                        <div className="signup-btn">
+                            <CustomButton
+                                fullWidth
+                                type="submit"
+                                variant="contained"
+                            >
+                                Sign up
+                            </CustomButton>
+                        </div>
                     </Box>
                 </div>
                 <div className="reg-right-footer">

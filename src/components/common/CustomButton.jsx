@@ -6,23 +6,21 @@ const CustomButton = ({
     fullWidth = false,
     onClick,
     disabled = false,
+    size = 'small',
+    className = ''
 }) => {
     return (
         <Button
+            className={ className }
             type={ type }
             fullWidth={ fullWidth }
             onClick={ onClick }
             disabled={ disabled }
             variant="contained"
-            // style={ {
-            //     fontSize: '1rem',
-            //     fontWeight: '600',
-            //     borderRadius: '4px',
-            //     backgroundColor: '#555555'
-            // } }
+            size={ size }
             sx={ {
-                mt: 2,
-                py: 1.2,
+                // mt: 2,
+                // py: 0.5,
                 textTransform: "none",
                 fontSize: "16px",
                 fontWeight: 600,

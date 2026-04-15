@@ -7,6 +7,9 @@ const CustomTextInput = ({
     onChange,
     type = "text",
     required = false,
+    size = "small",
+    error = false,
+    helperText = ""
 }) => {
     return (
         <TextField
@@ -16,9 +19,12 @@ const CustomTextInput = ({
             name={ name }
             value={ value }
             type={ type }
+            size={ size }
             required={ required }
             onChange={ onChange }
             variant="outlined"
+            error={ error }
+            helperText={ helperText }
         />
     );
 };

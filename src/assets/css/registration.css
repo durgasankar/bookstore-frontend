@@ -62,3 +62,7 @@
 .signin-link:hover {
     text-decoration: underline;
 }
+
+.signup-btn {
+    margin-top: 1rem;
+}
