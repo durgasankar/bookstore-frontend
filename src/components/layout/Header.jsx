@@ -13,6 +13,7 @@ const Header = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('userinfo');
         successToast('Logout successfully.')
         navigate('/signin', { replace: true });
     }
