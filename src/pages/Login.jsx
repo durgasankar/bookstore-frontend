@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { isValidEmail } from '../utils/Validation';
-import { loginUserApi } from '../services/authService';
+// import { loginUserApi } from '../services/authService';
+// this will be replaced after service is done
+import { loginUser } from '../services/localAuthService';
 import useToast from '../hooks/useToast';
 import AuthLayout from '../components/layout/AuthLayout';
 import CustomButton from '../components/common/CustomButton';
@@ -50,7 +52,7 @@ const Login = () => {
             password: loginForm.password
         }
         try {
-            const response = await loginUserApi(payload);
+            const response = await loginUser(payload);
             localStorage.setItem('token', response.token)
             successToast(response?.message);
             navigate('/dashboard');

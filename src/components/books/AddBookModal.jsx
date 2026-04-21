@@ -51,8 +51,8 @@ const AddBookModal = ({ open, onClose }) => {
                         <CustomTextInput
                             label="Author"
                             value={ form.author }
-                            required
                             size="small"
+                            required
                             onChange={ (e) =>
                                 setForm({ ...form, author: e.target.value })
                             }
@@ -77,6 +77,7 @@ const AddBookModal = ({ open, onClose }) => {
                 </CustomButton>
                 <CustomButton
                     type="submit"
+                    disabled={ !form.title || !form.author }
                     onClick={ submitHandler }
                 >
                     Add Book

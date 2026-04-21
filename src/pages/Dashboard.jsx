@@ -1,11 +1,12 @@
 
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import '../assets/css/dashboard.css';
-import AddBookModal from '../components/books/AddBookModal';
-import AddBook from '../components/books/AddBookModal';
 import BookFilter from '../components/books/BookFilter';
 import BookList from '../components/books/BookList';
 import CustomButton from '../components/common/CustomButton';
+// import AddBookModal from '../components/books/AddBookModal';
+const AddBookModal = lazy(() => import("../components/books/AddBookModal"));
+
 
 const Dashboard = () => {
     const [open, setOpen] = useState(false);
@@ -18,10 +19,14 @@ const Dashboard = () => {
                 </CustomButton>
             </div>
             <BookList />
-            <AddBookModal
-                open={ open }
-                onClose={ () => setOpen(false) }
-            />
+            { open && (
+                <Suspense fallback={ null }>
+                    <AddBookModal
+                        open={ open }
+                        onClose={ () => setOpen(false) }
+                    />
+                </Suspense>
+            ) }
         </div>
     );
 };

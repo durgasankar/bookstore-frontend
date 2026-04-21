@@ -4,7 +4,9 @@ import CustomTextInput from '../components/common/CustomTextInput';
 import CustomRadioButton from '../components/common/CustomRadioButton';
 import CustomButton from '../components/common/CustomButton';
 import { hasPasswordMatched, isValidEmail } from '../utils/Validation';
-import { registerUserApi } from '../services/authService';
+// import { registerUserApi } from '../services/authService';
+// this will be replaced after service is done
+import { registerUser } from '../services/localAuthService';
 import useToast from '../hooks/useToast';
 import AuthLayout from '../components/layout/AuthLayout';
 import { useNavigate } from 'react-router-dom';
@@ -55,7 +57,7 @@ const Registration = () => {
             password: signupForm.password
         }
         try {
-            const response = await registerUserApi(payload);
+            const response = await registerUser(payload);
             successToast(response?.message);
             navigate('/signin');
         } catch (error) {
