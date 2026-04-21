@@ -38,10 +38,13 @@ const bookSlice = createSlice({
         },
         deleteBook: (state, action) => {
             state.search = action.payload;
+        },
+        setSearch: (state, action) => {
+            state.search = action.payload;
         }
     }
 })
 
 
-export const { addBook, updateBook, toggleReadStatus, setFilter, deleteBook } = bookSlice.actions;
+export const { addBook, updateBook, toggleReadStatus, setFilter, deleteBook, setSearch } = bookSlice.actions;
 export default bookSlice.reducer;

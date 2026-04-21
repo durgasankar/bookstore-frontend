@@ -26,10 +26,6 @@ const CustomButton = ({
                 fontSize: "16px",
                 fontWeight: 600,
                 borderRadius: "4px",
-                backgroundColor: "#1976D2",
-                "&:hover": {
-                    backgroundColor: "#1565C0",
-                },
             } }
         >
             { children }

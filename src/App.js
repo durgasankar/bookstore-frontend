@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Homepage from "./pages/Homepage";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import ProtectedRoute from "./routes/ProtectedRoute";
