@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
+import { BOOK_IMAGES } from "../utils/bookImages";
 
 
 const initialState = {
@@ -13,12 +14,15 @@ const bookSlice = createSlice({
     initialState,
     reducers: {
         addBook: (state, action) => {
+            const randomImage = BOOK_IMAGES[Math.floor(Math.random() * BOOK_IMAGES.length)];
+
             state.books.push({
                 id: uuid(),
                 title: action.payload.title,
                 author: action.payload.author,
                 description: action.payload.description,
-                read: false
+                read: false,
+                image: randomImage
             })
         },
         updateBook: (state, action) => {

@@ -6,7 +6,8 @@ import {
     Typography,
     Button,
     Chip,
-    Stack
+    Stack,
+    CardMedia
 } from "@mui/material";
 import { deleteBook, toggleReadStatus } from "../../reducers/booksSlice";
 
@@ -21,6 +22,15 @@ const BookItem = ({ book }) => {
                 borderLeft: book.read ? "4px solid #22c55e" : "4px solid #3b82f6"
             } }
         >
+
+            <CardMedia
+                component="img"
+                height="180"
+                image={ book.image }
+                alt={ book.title }
+                sx={ { objectFit: "cover" } }
+            />
+
             <CardContent>
                 <Stack
                     direction="row"

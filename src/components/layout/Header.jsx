@@ -26,7 +26,6 @@ const Header = () => {
             <button className="logout-btn" onClick={ handleLogout }>
                 Logout
             </button>
-
         </header>
     );
 };
