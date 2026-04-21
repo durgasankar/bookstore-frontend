@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import { Grid, Typography } from "@mui/material";
 import BookItem from "./BookItem";
+import { useMemo } from "react";
 
 const BookList = () => {
     const { books, filter, search } = useSelector(state => state.books);
 
-    const searchText = search.toLowerCase();
+    const searchText = search?.toLowerCase();
 
-    const filteredBooks = books
+    const filteredBooks = useMemo(() => books
         .filter(book =>
             book.title.toLowerCase().includes(searchText) ||
             book.author.toLowerCase().includes(searchText)
@@ -18,16 +19,16 @@ const BookList = () => {
                 : filter === "read"
                     ? book.read
                     : !book.read
-        );
+        ), [books, filter, searchText]);
 
     if (filteredBooks.length === 0) {
-        return <Typography>No books found</Typography>;
+        return <Typography variant="body2" color="text.secondary">No books found</Typography>;
     }
 
     return (
         <Grid container spacing={ 2 } mt={ 1 }>
             { filteredBooks.map(book => (
-                <Grid item xs={ 12 } sm={ 6 } md={ 4 } key={ book.id }>
+                <Grid key={ book.id }>
                     <BookItem book={ book } />
                 </Grid>
             )) }

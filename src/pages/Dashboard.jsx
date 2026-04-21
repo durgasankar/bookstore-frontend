@@ -18,12 +18,10 @@ const Dashboard = () => {
                 </CustomButton>
             </div>
             <BookList />
-
             <AddBookModal
                 open={ open }
                 onClose={ () => setOpen(false) }
             />
-
         </div>
     );
 };

@@ -22,7 +22,6 @@ const BookItem = ({ book }) => {
                 borderLeft: book.read ? "4px solid #22c55e" : "4px solid #3b82f6"
             } }
         >
-
             <CardMedia
                 component="img"
                 height="180"
@@ -30,7 +29,6 @@ const BookItem = ({ book }) => {
                 alt={ book.title }
                 sx={ { objectFit: "cover" } }
             />
-
             <CardContent>
                 <Stack
                     direction="row"
@@ -41,21 +39,19 @@ const BookItem = ({ book }) => {
                     <Typography variant="h6">
                         { book.title }
                     </Typography>
-
                     <Chip
                         label={ book.read ? "Read" : "Unread" }
                         size="small"
                         color={ book.read ? "success" : "primary" }
+                        id='rect-border'
                     />
                 </Stack>
-
                 <Typography
                     variant="subtitle2"
                     color="text.secondary"
                 >
                     by { book.author }
                 </Typography>
-
                 <Typography
                     variant="body2"
                     mt={ 1 }
@@ -63,7 +59,6 @@ const BookItem = ({ book }) => {
                     { book.description }
                 </Typography>
             </CardContent>
-
             <CardActions sx={ { justifyContent: "space-between", px: 2 } }>
                 <Button
                     size="small"

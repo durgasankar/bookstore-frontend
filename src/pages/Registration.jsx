@@ -7,9 +7,11 @@ import { hasPasswordMatched, isValidEmail } from '../utils/Validation';
 import { registerUserApi } from '../services/authService';
 import useToast from '../hooks/useToast';
 import AuthLayout from '../components/layout/AuthLayout';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
     const { successToast, errorToast } = useToast();
+    const navigate = useNavigate();
 
     const [signupForm, setSignupForm] = useState({
         firstName: '',
@@ -55,8 +57,19 @@ const Registration = () => {
         try {
             const response = await registerUserApi(payload);
             successToast(response?.message);
+            navigate('/signin');
         } catch (error) {
             errorToast(error?.message || "Something went wrong");
+        } finally {
+            setSignupForm({
+                firstName: '',
+                lastName: '',
+                email: '',
+                mobileNumber: '',
+                gender: '',
+                password: '',
+                confirmPassword: ''
+            })
         }
     }
 
