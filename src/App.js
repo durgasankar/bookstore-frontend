@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import Registration from "./pages/Registration";
@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path='/' element={ <Homepage /> } />
+        <Route path='/' element={ <Navigate to='/signin' replace /> } />
         <Route path="/signup" element={ <Registration /> } />
         <Route
           path="/signin"

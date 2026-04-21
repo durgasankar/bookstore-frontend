@@ -7,7 +7,8 @@ const CustomButton = ({
     onClick,
     disabled = false,
     size = 'small',
-    className = ''
+    className = '',
+    variant = 'contained'
 }) => {
     return (
         <Button
@@ -16,7 +17,7 @@ const CustomButton = ({
             fullWidth={ fullWidth }
             onClick={ onClick }
             disabled={ disabled }
-            variant="contained"
+            variant={ variant }
             size={ size }
             sx={ {
                 // mt: 2,
