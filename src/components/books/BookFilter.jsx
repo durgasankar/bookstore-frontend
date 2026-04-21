@@ -1,6 +1,6 @@
 import { memo, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ButtonGroup, Chip, Stack } from "@mui/material";
+import { ButtonGroup, Chip } from "@mui/material";
 import { setFilter } from "../../reducers/booksSlice";
 import CustomButton from "../common/CustomButton";
 
