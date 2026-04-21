@@ -53,7 +53,9 @@ const Login = () => {
         }
         try {
             const response = await loginUser(payload);
+            console.log(response)
             localStorage.setItem('token', response.token)
+            localStorage.setItem('userinfo', JSON.stringify(response.data));
             successToast(response?.message);
             navigate('/dashboard');
         } catch (error) {

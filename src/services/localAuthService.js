@@ -40,7 +40,8 @@ export const loginUser = async ({ email, password }) => {
     return {
         success: true,
         message: "Login successful",
-        token
+        token,
+        data: { firstName: user.firstName, lastName: user.lastName }
     };
 };
 export const logoutUser = () => {

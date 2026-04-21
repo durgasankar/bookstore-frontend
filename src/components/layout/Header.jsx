@@ -8,6 +8,8 @@ const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { successToast } = useToast();
+    const userInfo = JSON.parse(localStorage.getItem('userinfo'));
+    console.log(userInfo)
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -17,7 +19,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            <h1>📚 My Book Dashboard</h1>
+            <h1>📚 {userInfo.firstName}'s Dashboard</h1>
             <input
                 type="text"
                 placeholder="Search books..."
