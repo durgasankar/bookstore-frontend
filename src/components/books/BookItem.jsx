@@ -27,7 +27,7 @@ const BookItem = ({ book }) => {
                 height="180"
                 image={ book.image }
                 alt={ book.title }
-                sx={ { objectFit: "cover" } }
+                sx={ { objectFit: "cover", width: "100%" } }
             />
             <CardContent>
                 <Stack
